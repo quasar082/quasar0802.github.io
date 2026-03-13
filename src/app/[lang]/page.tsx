@@ -1,6 +1,9 @@
 'use client';
 
 import {useTranslations} from 'next-intl';
+import {RobotCanvas} from '@/components/robot/RobotCanvas';
+import {useRobotStore} from '@/stores/useRobotStore';
+import type {RobotEmotion} from '@/types/robot';
 
 export default function HomePage() {
   const tHero = useTranslations('Hero');
@@ -19,6 +22,25 @@ export default function HomePage() {
         <p className="text-pretty mt-4 text-lg text-text-secondary md:text-xl">
           {tHero('tagline')}
         </p>
+      </section>
+
+      {/* 3D Robot Section */}
+      <section className="mx-auto max-w-[1200px] px-4 sm:px-6">
+        <RobotCanvas />
+        {/* Emotion demo controls -- development only, will be removed when chatbot drives emotions in Phase 4 */}
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          {(
+            ['idle', 'happy', 'sad', 'excited', 'thinking'] as RobotEmotion[]
+          ).map((emotion) => (
+            <button
+              key={emotion}
+              onClick={() => useRobotStore.getState().setEmotion(emotion)}
+              className="rounded border border-border px-3 py-1 text-sm text-text-secondary transition-colors hover:border-accent hover:text-accent"
+            >
+              {emotion}
+            </button>
+          ))}
+        </div>
       </section>
 
       {/* Showcase section -- proves design tokens + translations working */}
