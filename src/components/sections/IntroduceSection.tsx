@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef} from "react";
 import AnimatedText from "@/components/AnimatedText";
 import { motion, useInView } from "framer-motion";

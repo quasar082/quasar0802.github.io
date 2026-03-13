@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import AnimatedText from "@/components/AnimatedText";
 import BaseImage from "@/components/BaseImage";
