@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-03-14T10:59:10.212Z"
-last_activity: 2026-03-14 — Chat infrastructure (types, store, service, i18n) complete
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-14T11:05:51Z"
+last_activity: 2026-03-14 — Chat UI components complete, Phase 4 done
 progress:
   total_phases: 10
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 8
-  completed_plans: 7
-  percent: 88
+  completed_plans: 8
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-13)
 
 **Core value:** The interactive 3D robot chatbot — a cute robot that responds with emotions and animations based on LLM-generated answers — must work flawlessly
-**Current focus:** Phase 4 IN PROGRESS -- Chatbot Integration (Plan 1/2 complete). Plan 2 next (UI components).
+**Current focus:** Phase 4 COMPLETE -- Chatbot Integration (2/2 plans done). Ready for Phase 5 (Hero Section).
 
 ## Current Position
 
-Phase: 4 of 10 (Chatbot Integration) -- Plan 1/2 COMPLETE
-Next: Plan 04-02 (Chat UI Components)
-Status: In Progress
-Last activity: 2026-03-14 — Chat infrastructure (types, store, service, i18n) complete
+Phase: 4 of 10 (Chatbot Integration) -- COMPLETE
+Next: Phase 5 (Hero Section)
+Status: Phase 4 Complete
+Last activity: 2026-03-14 — Chat UI components complete, Phase 4 done
 
-Progress: [█████████░] 88%
+Progress: [██████████] 100%
 
 ## Accumulated Context
 
@@ -63,7 +63,12 @@ Recent decisions affecting current work:
 - [Phase 04]: Module-level AbortController enables abortCurrentStream without prop drilling
 - [Phase 04]: appendToLastMessage walks backwards for last assistant message (safe no-op)
 - [Phase 04]: Error handling distinguishes TimeoutError vs AbortError (user-cancel silent) vs generic
-- [Phase 04]: SSE parser uses async generator pattern -- composable with retry logic
+- [Phase 04]: ChatBar renders collapsed button or expanded ChatPanel (not both) for clean UX
+- [Phase 04]: ChatPanel uses spring animation (damping: 25, stiffness: 300) for natural slide-up
+- [Phase 04]: Auto-scroll watches messages.length and last message content length for streaming
+- [Phase 04]: Rate limiting local to ChatInput (useState + setTimeout) -- UI concern separation
+- [Phase 04]: ChatBar mounted inside NextIntlClientProvider for i18n access
+- [Phase 04]: Emotion demo buttons removed from page.tsx -- chatbot now drives robot emotions
 
 ### Pending Todos
 
@@ -77,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T10:59:00.931Z
-Stopped at: Completed 04-01-PLAN.md
-Resume: Phase 4 plan 1 complete (chat infrastructure). Ready for plan 04-02 (Chat UI Components).
+Last session: 2026-03-14T11:05:51Z
+Stopped at: Completed 04-02-PLAN.md
+Resume: Phase 4 complete (chatbot integration). Ready for Phase 5 (Hero Section).

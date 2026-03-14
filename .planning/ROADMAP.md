@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Project Setup** - Fresh Next.js 16 app with TypeScript, Tailwind CSS v4, and core dependencies
 - [ ] **Phase 2: i18n Foundation + Lab Aesthetic** - Restructure to `app/[lang]/` routing, install next-intl, establish dark theme CSS system
 - [x] **Phase 3: 3D Robot Subsystem** - Interactive robot rendered in browser via React Three Fiber with emotion-based animations (completed 2026-03-13)
-- [ ] **Phase 4: Chatbot Integration** - Sticky LLM-connected chatbot that drives robot emotions via Zustand
+- [x] **Phase 4: Chatbot Integration** - Sticky LLM-connected chatbot that drives robot emotions via Zustand
 - [ ] **Phase 5: Hero Section** - Redesigned hero with static black hole background and 3D robot foreground
 - [ ] **Phase 6: About + Introduce Sections** - Storytelling-format sections with scroll animations
 - [ ] **Phase 7: Projects Section + Detail Pages** - Data-driven project cards with full case study pages
@@ -80,11 +80,11 @@ Plans:
   4. A typing indicator (dots or spinner) is shown while waiting for the API response
   5. When the LLM API is unreachable, the chat shows a friendly fallback message and the robot plays its idle animation
   6. Scrolling away and back preserves the full conversation history in the current browser session
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 04-01-PLAN.md — Chat types, Zustand store with localStorage persistence, SSE streaming service, mock/demo mode, i18n strings
-- [ ] 04-02-PLAN.md — Chat UI components (ChatBar, ChatPanel, ChatBubble, ChatInput, TypingIndicator, PromptChips), layout integration, visual verification
+- [x] 04-01-PLAN.md — Chat types, Zustand store with localStorage persistence, SSE streaming service, mock/demo mode, i18n strings
+- [x] 04-02-PLAN.md — Chat UI components (ChatBar, ChatPanel, ChatBubble, ChatInput, TypingIndicator, PromptChips), layout integration, visual verification
 
 ### Phase 5: Hero Section
 **Goal**: The hero section presents the portfolio owner's identity and the 3D robot as the visual centerpiece on a dark space background
@@ -168,7 +168,7 @@ Note: Phase 6 depends on Phase 2 (not Phase 5), so it can run in parallel with P
 | 1. Project Setup | N/A | Complete | 2026-03-13 |
 | 2. i18n Foundation + Lab Aesthetic | 0/2 | Planning complete | - |
 | 3. 3D Robot Subsystem | 2/2 | Complete   | 2026-03-14 |
-| 4. Chatbot Integration | 0/2 | Planning complete | - |
+| 4. Chatbot Integration | 2/2 | Complete | 2026-03-14 |
 | 5. Hero Section | 0/? | Not started | - |
 | 6. About + Introduce Sections | 0/? | Not started | - |
 | 7. Projects Section + Detail Pages | 0/? | Not started | - |
