@@ -162,13 +162,58 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated by roadmapper) | | |
+| ANIM-01 | Phase 11 | Pending |
+| ANIM-02 | Phase 11 | Pending |
+| ANIM-03 | Phase 16 | Pending |
+| ANIM-04 | Phase 16 | Pending |
+| ANIM-05 | Phase 17 | Pending |
+| PRLD-01 | Phase 13 | Pending |
+| PRLD-02 | Phase 13 | Pending |
+| PRLD-03 | Phase 13 | Pending |
+| PRLD-04 | Phase 13 | Pending |
+| PRLD-05 | Phase 13 | Pending |
+| THME-01 | Phase 12 | Pending |
+| THME-02 | Phase 12 | Pending |
+| THME-03 | Phase 12 | Pending |
+| THME-04 | Phase 12 | Pending |
+| THME-05 | Phase 12 | Pending |
+| HERO-01 | Phase 14 | Pending |
+| HERO-02 | Phase 14 | Pending |
+| HERO-03 | Phase 14 | Pending |
+| HERO-04 | Phase 14 | Pending |
+| HERO-05 | Phase 14 | Pending |
+| ROBT-06 | Phase 15 | Pending |
+| ROBT-07 | Phase 15 | Pending |
+| ROBT-08 | Phase 15 | Pending |
+| CHAT-07 | Phase 15 | Pending |
+| CHAT-08 | Phase 15 | Pending |
+| CHAT-09 | Phase 15 | Pending |
+| CHAT-10 | Phase 15 | Pending |
+| CONT-01 | Phase 16 | Pending |
+| CONT-02 | Phase 16 | Pending |
+| CONT-03 | Phase 16 | Pending |
+| CONT-04 | Phase 16 | Pending |
+| CONT-05 | Phase 16 | Pending |
+| CONT-06 | Phase 16 | Pending |
+| CONT-07 | Phase 16 | Pending |
+| CONT-08 | Phase 16 | Pending |
+| CONT-09 | Phase 16 | Pending |
+| MICR-01 | Phase 17 | Pending |
+| MICR-02 | Phase 17 | Pending |
+| MICR-03 | Phase 17 | Pending |
+| MICR-04 | Phase 17 | Pending |
+| MICR-05 | Phase 17 | Pending |
+| PERF-04 | Phase 18 | Pending |
+| PERF-05 | Phase 18 | Pending |
+| PERF-06 | Phase 18 | Pending |
+| PERF-07 | Phase 18 | Pending |
+| PERF-08 | Phase 18 | Pending |
 
 **Coverage:**
-- v2 requirements: 42 total
-- Mapped to phases: 0
-- Unmapped: 42 ⚠️
+- v2 requirements: 46 total (corrected from initial count of 42)
+- Mapped to phases: 46
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-15*
-*Last updated: 2026-03-15 after initial definition*
+*Last updated: 2026-03-15 after v2.0 roadmap creation*
