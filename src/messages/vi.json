@@ -33,5 +33,19 @@
   },
   "Footer": {
     "copyright": "Hà Minh Quân. Bảo lưu mọi quyền."
+  },
+  "Chat": {
+    "placeholder": "Nhập tin nhắn...",
+    "send": "Gửi",
+    "clear": "Xóa hội thoại",
+    "close": "Đóng",
+    "greeting": "Xin chào! Mình là trợ lý robot của Quân. Hỏi mình bất cứ điều gì về công việc của Quân nhé!",
+    "promptChip1": "Quân làm gì?",
+    "promptChip2": "Kể về các dự án",
+    "promptChip3": "Bạn dùng công nghệ gì?",
+    "errorGeneric": "Ui, có lỗi xảy ra rồi. Để mình thử lại...",
+    "errorTimeout": "Lâu quá rồi. Vui lòng thử lại.",
+    "errorOffline": "Mình không kết nối được với não rồi. Chuyển sang chế độ demo!",
+    "demoNotice": "Chế độ demo - câu trả lời được viết sẵn"
   }
 }

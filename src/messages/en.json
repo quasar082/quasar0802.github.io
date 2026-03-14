@@ -33,5 +33,19 @@
   },
   "Footer": {
     "copyright": "Ha Minh Quan. All rights reserved."
+  },
+  "Chat": {
+    "placeholder": "Type a message...",
+    "send": "Send",
+    "clear": "Clear chat",
+    "close": "Close",
+    "greeting": "Hey there! I'm Quan's robot assistant. Ask me anything about his work!",
+    "promptChip1": "What does Quan do?",
+    "promptChip2": "Tell me about your projects",
+    "promptChip3": "What tech do you use?",
+    "errorGeneric": "Oops, something went wrong. Let me try again...",
+    "errorTimeout": "That took too long. Please try again.",
+    "errorOffline": "I can't reach my brain right now. Switching to demo mode!",
+    "demoNotice": "Demo mode - responses are pre-written"
   }
 }
