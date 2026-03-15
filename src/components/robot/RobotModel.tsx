@@ -61,6 +61,3 @@ export function RobotModel() {
     </group>
   );
 }
-
-// Preload model to start download early
-useGLTF.preload(MODEL_PATH);
