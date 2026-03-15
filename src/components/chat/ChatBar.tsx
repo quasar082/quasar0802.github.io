@@ -1,27 +1,24 @@
 'use client';
 
-import {MessageCircle} from 'lucide-react';
 import {AnimatePresence} from 'framer-motion';
-import {useTranslations} from 'next-intl';
 import {useChatStore} from '@/stores/useChatStore';
 import {abortCurrentStream} from '@/services/chat';
 import {ChatPanel} from './ChatPanel';
+import {ChatInput} from './ChatInput';
 
 /**
- * Sticky chat bar fixed at the bottom of the viewport.
+ * Always-visible floating glassmorphism chat bar at the bottom center of the viewport.
  *
- * Collapsed state: slim bar with placeholder text and icon.
- * Expanded state: ChatPanel slides up above with AnimatePresence.
+ * The input is always visible. When the user sends a message, the ChatPanel
+ * slides up above the bar with AnimatePresence.
  *
  * Mounted at layout level so it persists across page navigation.
  */
 export function ChatBar() {
-  const t = useTranslations('Chat');
   const isOpen = useChatStore((s) => s.isOpen);
+  const messages = useChatStore((s) => s.messages);
 
-  const handleExpand = () => {
-    useChatStore.getState().setOpen(true);
-  };
+  const showPanel = isOpen && messages.length > 0;
 
   const handleCollapse = () => {
     useChatStore.getState().setOpen(false);
@@ -29,23 +26,18 @@ export function ChatBar() {
   };
 
   return (
-    <div className="fixed right-0 bottom-0 z-50 w-full pb-[env(safe-area-inset-bottom)] md:right-4 md:bottom-4 md:w-[400px]">
+    <div className="fixed bottom-0 inset-x-0 z-50 flex flex-col items-center pb-[env(safe-area-inset-bottom)]">
+      {/* Chat panel (above bar) */}
       <AnimatePresence>
-        {isOpen && <ChatPanel onClose={handleCollapse} />}
+        {showPanel && <ChatPanel onClose={handleCollapse} />}
       </AnimatePresence>
 
-      {!isOpen && (
-        <button
-          type="button"
-          onClick={handleExpand}
-          className="flex w-full items-center gap-3 border border-border bg-surface-elevated px-4 py-3 text-left transition-colors hover:border-border-hover md:rounded-xl"
-        >
-          <MessageCircle className="size-5 shrink-0 text-accent" />
-          <span className="flex-1 truncate text-sm text-text-muted">
-            {t('placeholder')}
-          </span>
-        </button>
-      )}
+      {/* Always-visible floating input bar */}
+      <div className="w-full px-4 pb-4 md:w-[500px] md:px-0">
+        <div className="rounded-full bg-white/60 backdrop-blur-md border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)]">
+          <ChatInput />
+        </div>
+      </div>
     </div>
   );
 }

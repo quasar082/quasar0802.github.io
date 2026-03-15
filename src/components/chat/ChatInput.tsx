@@ -9,6 +9,7 @@ import {RATE_LIMIT_COOLDOWN_MS} from '@/types/chat';
 
 /**
  * Chat text input with send button.
+ * Styled for glassmorphism pill bar context.
  * Handles rate limiting and disabled state during streaming.
  */
 export function ChatInput() {
@@ -26,6 +27,7 @@ export function ChatInput() {
 
       sendMessage(trimmed);
       setInput('');
+      useChatStore.getState().setOpen(true);
 
       // Rate limit cooldown
       setIsRateLimited(true);
@@ -42,24 +44,24 @@ export function ChatInput() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-2 border-t border-border px-3 py-2"
+      className="flex items-center gap-2 px-4 py-2"
     >
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder={t('placeholder')}
-        className="flex-1 rounded-lg border border-border bg-surface-overlay px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
+        className="flex-1 bg-transparent px-3 py-2 text-sm text-text-primary placeholder:text-text-muted/70 focus:outline-none"
         disabled={isStreaming}
       />
       <button
         type="submit"
         disabled={isDisabled}
         aria-label={t('send')}
-        className={`rounded-lg border border-accent p-2 transition-colors ${
+        className={`rounded-full p-2 transition-colors ${
           isDisabled
-            ? 'cursor-not-allowed opacity-50'
-            : 'hover:bg-accent hover:text-surface-base'
+            ? 'cursor-not-allowed opacity-40'
+            : 'hover:bg-white/30 hover:text-text-primary'
         } text-accent`}
       >
         <Send className="size-4" />
