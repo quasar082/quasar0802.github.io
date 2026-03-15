@@ -2,25 +2,15 @@
 
 import {useTranslations} from 'next-intl';
 import {RobotCanvas} from '@/components/robot/RobotCanvas';
+import {HeroSection} from '@/components/hero/HeroSection';
 
 export default function HomePage() {
-  const tHero = useTranslations('Hero');
   const tHome = useTranslations('Home');
 
   return (
     <div className="min-h-dvh">
-      {/* Hero section (placeholder -- real hero comes in Phase 5) */}
-      <section className="mx-auto flex max-w-[1200px] flex-col items-center justify-center px-4 py-32 text-center sm:px-6">
-        <h1 className="text-balance font-display text-5xl font-medium text-text-primary md:text-6xl">
-          {tHero('greeting')}
-        </h1>
-        <p className="mt-4 font-display text-2xl text-accent md:text-3xl">
-          {tHero('role')}
-        </p>
-        <p className="text-pretty mt-4 text-lg text-text-secondary md:text-xl">
-          {tHero('tagline')}
-        </p>
-      </section>
+      {/* Hero section */}
+      <HeroSection />
 
       {/* 3D Robot Section */}
       <section className="mx-auto max-w-[1200px] px-4 sm:px-6">

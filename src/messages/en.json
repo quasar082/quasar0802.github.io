@@ -13,7 +13,8 @@
   "Hero": {
     "greeting": "Hi, I'm Quan",
     "role": "AI Engineer",
-    "tagline": "Make Wall-E can love again"
+    "tagline": "Make Wall-E can love again",
+    "marquee": "HA MINH QUAN"
   },
   "Home": {
     "welcome": "Welcome to my portfolio",

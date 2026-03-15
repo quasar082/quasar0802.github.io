@@ -13,7 +13,8 @@
   "Hero": {
     "greeting": "Xin chào, mình là Quân",
     "role": "Kỹ sư AI",
-    "tagline": "Làm cho Wall-E biết yêu lại"
+    "tagline": "Làm cho Wall-E biết yêu lại",
+    "marquee": "HA MINH QUAN"
   },
   "Home": {
     "welcome": "Chào mừng đến portfolio của mình",
