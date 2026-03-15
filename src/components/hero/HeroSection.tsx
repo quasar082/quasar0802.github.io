@@ -13,18 +13,18 @@ export function HeroSection() {
         {/* Photo placeholder */}
         <div className="h-[280px] w-[220px] rounded-lg bg-greige-200 md:h-[350px] md:w-[280px]" />
 
-        {/* Role text */}
-        <p
-          className="mt-6 font-display font-[300] text-text-primary"
-          style={{fontSize: 'var(--text-display-md)'}}
-        >
-          {t('role')}
-        </p>
-
-        {/* Tagline */}
-        <p className="mt-3 text-lg text-text-secondary md:text-xl">
-          {t('tagline')}
-        </p>
+        {/* Role + Tagline — offset to the right */}
+        <div className="mt-6 text-right self-center md:self-auto md:ml-[55%]">
+          <p
+            className="font-display font-[300] text-text-primary"
+            style={{fontSize: 'var(--text-display-md)'}}
+          >
+            {t('role')}
+          </p>
+          <p className="mt-2 text-lg text-text-secondary md:text-xl">
+            {t('tagline')}
+          </p>
+        </div>
       </div>
 
       {/* Marquee - anchored at bottom of viewport */}
