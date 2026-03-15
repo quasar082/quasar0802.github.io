@@ -1,0 +1,30 @@
+---
+title: "Introduction to RAG Architecture"
+date: "2026-03-05"
+tags: ["AI", "RAG", "NLP", "vector-database"]
+excerpt: "Understanding Retrieval-Augmented Generation and how it solves the knowledge cutoff problem for LLMs."
+series: "AI Engineering Series"
+seriesOrder: 2
+---
+
+## What is RAG?
+
+Retrieval-Augmented Generation combines the power of large language models with external knowledge retrieval...
+
+## The Architecture
+
+A typical RAG pipeline consists of three stages: indexing, retrieval, and generation...
+
+### Indexing
+
+Documents are chunked, embedded, and stored in a vector database...
+
+```typescript
+const chunks = splitDocument(document, { chunkSize: 512, overlap: 50 });
+const embeddings = await embed(chunks);
+await vectorStore.upsert(embeddings);
+```
+
+## When to Use RAG
+
+RAG is ideal when your LLM needs access to domain-specific or frequently updated knowledge.
