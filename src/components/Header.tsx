@@ -2,7 +2,7 @@
 
 import {useState, useEffect} from 'react';
 import {useTranslations} from 'next-intl';
-import {FlaskConical, Menu, X} from 'lucide-react';
+import {Menu, X} from 'lucide-react';
 import {Link} from '@/i18n/navigation';
 import {LanguageSwitcher} from './LanguageSwitcher';
 import {MobileMenu} from './MobileMenu';
@@ -31,52 +31,50 @@ export function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6">
-        {/* Brand mark */}
-        <Link href="/" className="flex items-center gap-2">
-          <FlaskConical className="size-6 text-accent" />
-          <span className="font-display text-lg text-text-primary">
-            {t('brand')}
-          </span>
+      <div className="flex h-16 items-center justify-between px-6 md:px-8">
+        {/* Brand mark -- text-only minimal logo */}
+        <Link
+          href="/"
+          className="font-display text-lg tracking-wider uppercase text-text-primary"
+        >
+          Quasar
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 md:flex">
-          <Link
-            href="/"
-            className="text-text-secondary transition-colors duration-150 hover:text-text-accent"
-          >
-            {t('home')}
-          </Link>
-          <Link
-            href="/"
-            className="text-text-secondary transition-colors duration-150 hover:text-text-accent"
-          >
-            {t('about')}
-          </Link>
-          <Link
-            href="/"
-            className="text-text-secondary transition-colors duration-150 hover:text-text-accent"
-          >
-            {t('projects')}
-          </Link>
-          <Link
-            href="/"
-            className="text-text-secondary transition-colors duration-150 hover:text-text-accent"
-          >
-            {t('blog')}
-          </Link>
-        </nav>
-
-        {/* Desktop language switcher */}
-        <div className="hidden md:block">
+        {/* Desktop nav + language switcher */}
+        <div className="hidden items-center gap-8 md:flex">
+          <nav className="flex items-center gap-8">
+            <Link
+              href="/"
+              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+            >
+              {t('home')}
+            </Link>
+            <Link
+              href="/"
+              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+            >
+              {t('about')}
+            </Link>
+            <Link
+              href="/"
+              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+            >
+              {t('projects')}
+            </Link>
+            <Link
+              href="/"
+              className="text-sm uppercase tracking-wider text-text-secondary transition-colors duration-150 hover:text-text-primary"
+            >
+              {t('blog')}
+            </Link>
+          </nav>
           <LanguageSwitcher />
         </div>
 
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-text-secondary transition-colors duration-150 hover:text-text-accent md:hidden"
+          className="text-text-secondary transition-colors duration-150 hover:text-text-primary md:hidden"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? (
