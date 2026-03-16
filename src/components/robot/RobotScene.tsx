@@ -54,7 +54,6 @@ export default function RobotScene() {
         dpr={[1, 1.5]}
         camera={{position: [0, 1, 5], fov: 45}}
         gl={{antialias: false, powerPreference: 'high-performance'}}
-        frameloop="demand"
       >
         <PerformanceMonitor
           onDecline={() => setPerformanceTier('low')}

@@ -10,7 +10,6 @@
 
 import {useRef, useEffect} from 'react';
 import {useGLTF, useAnimations} from '@react-three/drei';
-import {useFrame} from '@react-three/fiber';
 import type {Group} from 'three';
 import {useRobotStore} from '@/stores/useRobotStore';
 import {EMOTION_CLIP_MAP, MODEL_PATH} from '@/types/robot';
@@ -55,15 +54,6 @@ export function RobotModel() {
 
     prevEmotionRef.current = emotion;
   }, [emotion, actions]);
-
-  // Invalidate R3F render loop when animation mixer is active (frameloop="demand")
-  useFrame((state) => {
-    const firstKey = Object.keys(actions)[0];
-    if (firstKey) {
-      const mixer = actions[firstKey]?.getMixer();
-      if (mixer) state.invalidate();
-    }
-  });
 
   return (
     <group ref={groupRef}>
