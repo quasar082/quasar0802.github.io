@@ -1,5 +1,4 @@
 import {HeroSection} from '@/components/hero/HeroSection';
-import {RobotShowcase} from '@/components/robot/RobotShowcase';
 import {AboutSection} from '@/components/about/AboutSection';
 import {SvgDivider} from '@/components/animations/SvgDivider';
 import {buildAlternates} from '@/lib/metadata';
@@ -41,12 +40,7 @@ export default async function HomePage({
 
       <SvgDivider />
 
-      {/* Section 2: Robot Showcase */}
-      <RobotShowcase />
-
-      <SvgDivider />
-
-      {/* Section 3: About */}
+      {/* About */}
       <div id="about">
         <AboutSection />
       </div>

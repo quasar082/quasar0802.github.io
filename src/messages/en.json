@@ -52,10 +52,6 @@
     "sourceCode": "Source Code",
     "backToProjects": "Back to Projects"
   },
-  "RobotShowcase": {
-    "heading": "Meet My Robot Assistant",
-    "cta": "Say hello \u2014 it responds with emotions!"
-  },
   "Blog": {
     "heading": "Blog",
     "description": "Articles on AI engineering, NLP, LLM systems, and software development",
@@ -74,7 +70,7 @@
     "send": "Send",
     "clear": "Clear chat",
     "close": "Close",
-    "greeting": "Hey there! I'm Quan's robot assistant. Ask me anything about his work!",
+    "greeting": "Hey there! I'm Quan's assistant. Ask me anything about his work!",
     "promptChip1": "What does Quan do?",
     "promptChip2": "Tell me about your projects",
     "promptChip3": "What tech do you use?",
