@@ -71,6 +71,22 @@ export default async function LocaleLayout({
       <body
         className={`${marlinGeo.variable} ${saprona.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Preloader curtain — pure HTML outside React Suspense to avoid hidden="" wrapper.
+            Renders on first paint as solid black overlay. Inline script removes it
+            synchronously for non-homepage / returning visitors. React Preloader component
+            animates and removes it on first homepage visit. */}
+        <div
+          id="preloader-curtain"
+          style={{position:'fixed',inset:0,zIndex:60,pointerEvents:'none'}}
+        >
+          <div style={{position:'absolute',inset:'0 0 50%',background:'#000'}} />
+          <div style={{position:'absolute',inset:'50% 0 0',background:'#000'}} />
+        </div>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=window.location.pathname;var h=['/','/en','/en/','/vi','/vi/'];if(h.indexOf(p)===-1||sessionStorage.getItem('rq-preloader-seen')==='true'){var c=document.getElementById('preloader-curtain');if(c)c.remove()}}catch(e){var c=document.getElementById('preloader-curtain');if(c)c.remove()}})();`,
+          }}
+        />
         <NextIntlClientProvider locale={lang} messages={messages}>
           <SmoothScrollProvider>
             <Preloader />
