@@ -1,11 +1,9 @@
-'use client';
-
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {TextReveal} from '@/components/animations/TextReveal';
 import {SectionNumber} from '@/components/animations/SectionNumber';
 
-export function AboutSection() {
-  const t = useTranslations('About');
+export async function AboutSection() {
+  const t = await getTranslations('About');
 
   return (
     <section className="px-6 py-section md:px-8">

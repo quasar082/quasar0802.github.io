@@ -1,6 +1,4 @@
-'use client';
-
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {Github, Linkedin, Twitter, Mail} from 'lucide-react';
 import {TextReveal} from '@/components/animations/TextReveal';
 
@@ -11,8 +9,8 @@ const socialLinks = [
   {icon: Mail, href: 'mailto:contact@example.com', label: 'Email'},
 ];
 
-export function Footer() {
-  const t = useTranslations('Footer');
+export async function Footer() {
+  const t = await getTranslations('Footer');
 
   return (
     <footer className="px-6 py-section md:px-8">

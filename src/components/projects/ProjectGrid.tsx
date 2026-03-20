@@ -1,6 +1,4 @@
-'use client';
-
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {TextReveal} from '@/components/animations/TextReveal';
 import {ProjectCard} from '@/components/projects/ProjectCard';
 import type {Project} from '@/data/projects';
@@ -10,8 +8,8 @@ interface ProjectGridProps {
   locale: string;
 }
 
-export function ProjectGrid({projects, locale}: ProjectGridProps) {
-  const t = useTranslations('Projects');
+export async function ProjectGrid({projects, locale}: ProjectGridProps) {
+  const t = await getTranslations('Projects');
 
   return (
     <section className="px-6 py-section md:px-8">
