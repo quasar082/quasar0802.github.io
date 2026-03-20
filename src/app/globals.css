@@ -89,6 +89,14 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
+/* Preloader: hide content until preloader completes (prevents flash of content) */
+body.preloader-pending > * {
+  visibility: hidden;
+}
+body.preloader-pending::after {
+  visibility: hidden;
+}
+
 /* Grain texture overlay */
 body::after {
   content: '';
