@@ -1,3 +1,5 @@
+import 'server-only';
+
 /**
  * JSON-LD structured data builders for SEO.
  *

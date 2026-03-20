@@ -1,3 +1,5 @@
+import 'server-only';
+
 export interface Project {
   slug: string;
   title: string;
