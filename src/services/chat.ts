@@ -3,17 +3,15 @@
  *
  * Handles SSE streaming from the LLM backend, auto-retry on failure,
  * mock/demo mode when the API is unconfigured, and orchestrates
- * store updates for messages and robot emotions.
+ * store updates for messages.
  *
  * No 'use client' directive -- this is a pure TypeScript module.
  * No browser-only APIs are executed at import time.
  */
 
-import type {RobotEmotion} from '@/types/robot';
 import type {SSEEvent} from '@/types/chat';
 import {STREAM_TIMEOUT_MS} from '@/types/chat';
 import {useChatStore} from '@/stores/useChatStore';
-import {useRobotStore} from '@/stores/useRobotStore';
 
 // ---------------------------------------------------------------------------
 // Environment configuration
@@ -113,31 +111,25 @@ async function* streamSSE(
 // Mock streaming (demo mode)
 // ---------------------------------------------------------------------------
 
-/** Pre-written mock responses with varied emotions. */
-const MOCK_RESPONSES: Array<{text: string; emotion: RobotEmotion}> = [
+/** Pre-written mock responses. */
+const MOCK_RESPONSES: Array<{text: string}> = [
   {
     text: "Quan is an AI Engineer who specializes in NLP, LLM orchestration, multi-agent systems, and RAG architecture. He loves building AI that feels human and works reliably at scale!",
-    emotion: 'happy',
   },
   {
     text: "Quan has worked on some really cool projects! From building intelligent chatbots to designing multi-agent pipelines, he's always pushing the boundaries of what AI can do.",
-    emotion: 'excited',
   },
   {
-    text: "The tech stack here includes Next.js, React, TypeScript, Tailwind CSS, Three.js for 3D rendering, and Zustand for state management. On the AI side, it's all about LLMs, RAG, and vector databases!",
-    emotion: 'thinking',
+    text: "The tech stack here includes Next.js, React, TypeScript, Tailwind CSS, and Zustand for state management. On the AI side, it's all about LLMs, RAG, and vector databases!",
   },
   {
-    text: "I'm Quan's robot assistant! I live right here on this portfolio site. I can tell you about his work, his projects, or just chat. I try my best, but sometimes I get a little confused...",
-    emotion: 'happy',
+    text: "I'm Quan's assistant! I live right here on this portfolio site. I can tell you about his work, his projects, or just chat. I try my best, but sometimes I get a little confused...",
   },
   {
     text: "Hmm, that's a tricky question. Let me think... I'm not sure I have a great answer for that one, but I'm always learning! Maybe ask me something about Quan's projects instead?",
-    emotion: 'sad',
   },
   {
     text: "Oh, I love that question! Quan is passionate about making AI accessible and human-friendly. His motto is 'Make Wall-E can love again' -- how cool is that?",
-    emotion: 'excited',
   },
 ];
 
@@ -148,9 +140,6 @@ const MOCK_RESPONSES: Array<{text: string; emotion: RobotEmotion}> = [
 export async function* mockStreamChat(): AsyncGenerator<SSEEvent> {
   const response =
     MOCK_RESPONSES[Math.floor(Math.random() * MOCK_RESPONSES.length)];
-
-  // First event: emotion
-  yield {type: 'emotion', emotion: response.emotion};
 
   // Stream text word-by-word with random delay
   const words = response.text.split(' ');
@@ -186,15 +175,12 @@ export function abortCurrentStream(): void {
  *
  * Orchestrates the full send flow:
  * 1. Add user message to store
- * 2. Set robot to thinking
- * 3. Create placeholder assistant message
- * 4. Stream response (real or mock)
- * 5. Handle errors with auto-retry (1x)
- * 6. Update robot emotion based on stream
+ * 2. Create placeholder assistant message
+ * 3. Stream response (real or mock)
+ * 4. Handle errors with auto-retry (1x)
  */
 export async function sendMessage(message: string): Promise<void> {
   const chatStore = useChatStore.getState();
-  const robotStore = useRobotStore.getState();
 
   // 1. Add user message
   chatStore.addMessage({role: 'user', content: message});
@@ -203,10 +189,7 @@ export async function sendMessage(message: string): Promise<void> {
   useChatStore.getState().setStreaming(true);
   useChatStore.getState().setError(null);
 
-  // 3. Set robot to thinking
-  robotStore.setEmotion('thinking');
-
-  // 4. Create placeholder assistant message
+  // 3. Create placeholder assistant message
   useChatStore.getState().addMessage({role: 'assistant', content: ''});
 
   try {
@@ -279,9 +262,6 @@ async function consumeStream(
 ): Promise<void> {
   for await (const event of stream) {
     switch (event.type) {
-      case 'emotion':
-        useRobotStore.getState().setEmotion(event.emotion);
-        break;
       case 'text':
         useChatStore.getState().appendToLastMessage(event.content);
         break;
@@ -292,13 +272,10 @@ async function consumeStream(
 }
 
 /**
- * Handles a stream error: sets robot emotion to sad, adds a system
- * error message, removes empty placeholder, sets error in store.
+ * Handles a stream error: adds a system error message, removes empty
+ * placeholder, sets error in store.
  */
 function handleStreamError(err: unknown): void {
-  // Set robot to sad
-  useRobotStore.getState().setEmotion('sad');
-
   // Determine error message
   let errorMessage: string;
   if (err instanceof DOMException && err.name === 'TimeoutError') {

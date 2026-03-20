@@ -6,8 +6,6 @@
  * safe to import from any module (SSR or client).
  */
 
-import type {RobotEmotion} from '@/types/robot';
-
 // ---------------------------------------------------------------------------
 // Configuration constants
 // ---------------------------------------------------------------------------
@@ -33,8 +31,6 @@ export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
   /** The text content of the message. */
   content: string;
-  /** Robot emotion expressed alongside an assistant message. */
-  emotion?: RobotEmotion;
   /** Unix-epoch timestamp (ms) when the message was created. */
   timestamp: number;
 }
@@ -42,12 +38,6 @@ export interface ChatMessage {
 // ---------------------------------------------------------------------------
 // SSE event types (discriminated union)
 // ---------------------------------------------------------------------------
-
-/** First event in a stream -- sets the robot's emotion. */
-interface SSEEmotionEvent {
-  type: 'emotion';
-  emotion: RobotEmotion;
-}
 
 /** Progressive text chunk. */
 interface SSETextEvent {
@@ -61,7 +51,7 @@ interface SSEDoneEvent {
 }
 
 /** Discriminated union of all SSE event shapes. */
-export type SSEEvent = SSEEmotionEvent | SSETextEvent | SSEDoneEvent;
+export type SSEEvent = SSETextEvent | SSEDoneEvent;
 
 // ---------------------------------------------------------------------------
 // Store state contract
