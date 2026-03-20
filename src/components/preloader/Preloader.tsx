@@ -8,57 +8,59 @@ import { useLenis } from 'lenis/react';
 const PRELOADER_KEY = 'rq-preloader-seen';
 const HOMEPAGE_ROUTES = ['/', '/en', '/en/', '/vi', '/vi/'];
 
-/**
- * Inline hook: determines whether the preloader should show.
- * Returns true only on homepage routes when not already seen this session.
- * Uses useState(false) + useEffect to avoid SSR mismatch (sessionStorage is browser-only).
- */
-function useShowPreloader(): boolean {
-  const pathname = usePathname();
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const isHomepage = HOMEPAGE_ROUTES.includes(pathname);
-    const alreadySeen = sessionStorage.getItem(PRELOADER_KEY) === 'true';
-
-    if (isHomepage && !alreadySeen) {
-      setShow(true);
-    } else {
-      // Safety: ensure hiding class is removed if preloader won't show
-      document.body.classList.remove('preloader-pending');
-    }
-  }, [pathname]);
-
-  return show;
-}
-
 export default function Preloader() {
-  const shouldShow = useShowPreloader();
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const text1Ref = useRef<HTMLDivElement>(null);
   const text2Ref = useRef<HTMLDivElement>(null);
   const topHalfRef = useRef<HTMLDivElement>(null);
   const bottomHalfRef = useRef<HTMLDivElement>(null);
-  const [isComplete, setIsComplete] = useState(false);
+
+  // Start as 'pending' — SSR always renders the black curtain.
+  // After hydration, effect decides: 'animate' (run sequence) or 'dismiss' (skip instantly).
+  const [phase, setPhase] = useState<'pending' | 'animate' | 'dismiss' | 'done'>('pending');
   const lenis = useLenis();
 
-  // Lock scroll as soon as Lenis is available (only when preloader is active)
+  // Decide on hydration whether to animate or dismiss
   useEffect(() => {
-    if (shouldShow && lenis) {
+    const isHomepage = HOMEPAGE_ROUTES.includes(pathname);
+    const alreadySeen = sessionStorage.getItem(PRELOADER_KEY) === 'true';
+
+    if (isHomepage && !alreadySeen) {
+      setPhase('animate');
+    } else {
+      // Not needed — dismiss instantly
+      setPhase('dismiss');
+    }
+  }, [pathname]);
+
+  // When dismissed, remove body class and unmount
+  useEffect(() => {
+    if (phase === 'dismiss') {
+      document.body.classList.remove('preloader-pending');
+      // Small delay so React can commit the state before we set done
+      const raf = requestAnimationFrame(() => setPhase('done'));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [phase]);
+
+  // Lock scroll when animating
+  useEffect(() => {
+    if (phase === 'animate' && lenis) {
       lenis.stop();
     }
-  }, [lenis, shouldShow]);
+  }, [lenis, phase]);
 
   const onSequenceComplete = useCallback(() => {
     lenis?.start();
     sessionStorage.setItem(PRELOADER_KEY, 'true');
     document.body.classList.remove('preloader-pending');
-    setIsComplete(true);
+    setPhase('done');
   }, [lenis]);
 
   useGSAP(
     () => {
-      if (!shouldShow) return;
+      if (phase !== 'animate') return;
       if (
         !text1Ref.current ||
         !text2Ref.current ||
@@ -115,25 +117,25 @@ export default function Preloader() {
         'curtain'
       );
     },
-    { scope: containerRef, dependencies: [lenis, shouldShow, onSequenceComplete] }
+    { scope: containerRef, dependencies: [lenis, phase, onSequenceComplete] }
   );
 
-  // Don't render if preloader shouldn't show or has completed
-  if (!shouldShow || isComplete) return null;
+  // Fully done — unmount
+  if (phase === 'done') return null;
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[60]" style={{ visibility: 'visible' }}>
+    <div ref={containerRef} className="fixed inset-0 z-[60]" data-preloader>
       {/* Text container: centered, above curtain halves */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
         <div
           ref={text1Ref}
-          className="absolute font-display text-[clamp(1.5rem,4vw,3rem)] uppercase text-white font-light tracking-wider"
+          className="absolute font-display text-[clamp(1.5rem,4vw,3rem)] uppercase text-white font-light tracking-wider opacity-0"
         >
           Welcome to party
         </div>
         <div
           ref={text2Ref}
-          className="absolute font-display text-[clamp(4rem,15vw,12rem)] uppercase text-white font-light tracking-wider"
+          className="absolute font-display text-[clamp(4rem,15vw,12rem)] uppercase text-white font-light tracking-wider opacity-0"
         >
           Quasar
         </div>

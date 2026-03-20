@@ -89,8 +89,11 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
-/* Preloader: hide content until preloader completes (prevents flash of content) */
-body.preloader-pending > * {
+/* Preloader: black background + hide content until preloader completes */
+body.preloader-pending {
+  background-color: #000;
+}
+body.preloader-pending > *:not([data-preloader]) {
   visibility: hidden;
 }
 body.preloader-pending::after {
