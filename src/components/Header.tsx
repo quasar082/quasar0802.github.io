@@ -1,8 +1,9 @@
 'use client';
 
-import {useState, useCallback, useRef} from 'react';
+import {useState, useCallback, useRef, useEffect} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
-import {usePathname, useRouter} from '@/i18n/navigation';
+import {usePathname} from '@/i18n/navigation';
+import {gsap} from '@/lib/gsap';
 import {TransitionLink} from '@/components/transitions/TransitionLink';
 import {PillButton} from './header/PillButton';
 import {DropdownMenu} from './header/DropdownMenu';
@@ -12,20 +13,41 @@ export function Header() {
   const t = useTranslations('Header');
   const [menuOpen, setMenuOpen] = useState(false);
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
+  const localeBtnRef = useRef<HTMLButtonElement>(null);
+  const reducedMotion = useRef(false);
+
+  useEffect(() => {
+    reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
 
   const toggleLocale = useCallback(() => {
     const next = locale === 'en' ? 'vi' : 'en';
     localStorage.setItem('preferred-locale', next);
-    try {
-      router.replace(pathname, {locale: next});
-    } catch {
-      window.location.href = `/${next}${pathname}`;
-    }
-  }, [locale, router, pathname]);
+    // Static export: navigate directly via URL
+    const cleanPath = pathname === '/' ? '/' : pathname;
+    window.location.href = `/${next}${cleanPath}`;
+  }, [locale, pathname]);
+
+  const handleLocaleBtnEnter = useCallback(() => {
+    const el = localeBtnRef.current;
+    if (!el) return;
+    el.style.backgroundColor = 'var(--greige-200)';
+    if (reducedMotion.current) return;
+    const spans = el.querySelectorAll('.roll-text');
+    gsap.to(spans, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+  }, []);
+
+  const handleLocaleBtnLeave = useCallback(() => {
+    const el = localeBtnRef.current;
+    if (!el) return;
+    el.style.backgroundColor = 'var(--warm-white-overlay)';
+    if (reducedMotion.current) return;
+    const spans = el.querySelectorAll('.roll-text');
+    gsap.to(spans, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+  }, []);
 
   const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
@@ -35,6 +57,8 @@ export function Header() {
     menuOpen,
     onScrollClose: closeMenu,
   });
+
+  const currentLabel = locale === 'en' ? 'VI' : 'EN';
 
   return (
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
@@ -56,22 +80,27 @@ export function Header() {
 
         {/* Right: Actions */}
         <div ref={actionsRef} className="flex items-center gap-2">
-          {/* Language Toggle - circle */}
+          {/* Language Toggle - circle with TextRoll */}
           <button
+            ref={localeBtnRef}
             onClick={toggleLocale}
-            className="flex items-center justify-center w-10 h-10 rounded-full text-[15px] font-medium uppercase tracking-[0.08em] font-body cursor-pointer select-none transition-colors duration-300"
-            style={{backgroundColor: 'var(--warm-white-overlay)', color: 'var(--greige-900)'}}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--greige-200)';
+            className="flex items-center justify-center w-10 h-10 rounded-full text-[15px] font-medium uppercase tracking-[0.08em] font-body cursor-pointer select-none"
+            style={{
+              backgroundColor: 'var(--warm-white-overlay)',
+              color: 'var(--greige-900)',
+              transition: 'background-color 300ms ease',
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--warm-white-overlay)';
-            }}
+            onMouseEnter={handleLocaleBtnEnter}
+            onMouseLeave={handleLocaleBtnLeave}
             aria-label={t('switchLang')}
             type="button"
             suppressHydrationWarning
           >
-            {locale === 'en' ? 'VI' : 'EN'}
+            {/* TextRoll-style: two copies, roll on hover */}
+            <span style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1, width: '2ch', textAlign: 'center'}}>
+              <span className="roll-text" style={{display: 'block'}}>{currentLabel}</span>
+              <span className="roll-text" style={{display: 'block'}}>{currentLabel}</span>
+            </span>
           </button>
 
           {/* LET'S TALK - dark pill, hidden on mobile */}
