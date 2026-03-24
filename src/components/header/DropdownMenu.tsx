@@ -49,8 +49,8 @@ function ExternalButton({
   }, []);
 
   const isLight = variant === 'light';
-  const bg = isLight ? 'var(--warm-white-elevated)' : 'var(--greige-900)';
-  const hoverBg = isLight ? 'var(--greige-200)' : 'var(--greige-700)';
+  const bg = isLight ? 'var(--warm-white)' : 'var(--greige-900)';
+  const hoverBg = isLight ? 'var(--warm-white-elevated)' : 'var(--greige-700)';
   const textColor = isLight ? 'var(--greige-900)' : 'var(--warm-white)';
 
   const handleMouseEnter = useCallback(() => {
@@ -87,6 +87,7 @@ function ExternalButton({
         backgroundColor: bg,
         color: textColor,
         transition: 'background-color 200ms ease',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.03)',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -295,8 +296,6 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
         <div
           className="dropdown-item"
           style={{
-            borderRadius: '12px',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.03)',
             opacity: 0,
           }}
         >
@@ -311,8 +310,6 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
         <div
           className="dropdown-item"
           style={{
-            borderRadius: '12px',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.03)',
             opacity: 0,
           }}
         >

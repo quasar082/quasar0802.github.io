@@ -90,10 +90,10 @@ export function PillButton({
       backgroundColor: style.bg,
       color: style.text,
       borderRadius: '9999px',
-      height: '40px',
-      paddingLeft: '16px',
-      paddingRight: hasDots ? '12px' : '16px',
-      gap: hasDots ? '8px' : undefined,
+      height: '44px',
+      paddingLeft: '20px',
+      paddingRight: hasDots ? '16px' : '20px',
+      gap: hasDots ? '10px' : undefined,
       transition: 'background-color 300ms ease',
     } as React.CSSProperties,
     onMouseEnter: handleMouseEnter,
@@ -121,7 +121,7 @@ export function PillButton({
         <span
           ref={dotsRef}
           className="flex items-center justify-center"
-          style={{width: '13px', height: '13px', gap: '3px', flexShrink: 0}}
+          style={{width: '14px', height: '14px', gap: '3px', flexShrink: 0}}
         >
           <span
             style={{
