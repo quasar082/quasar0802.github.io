@@ -16,8 +16,6 @@ interface PillButtonProps {
   ariaControls?: string;
   className?: string;
   hidden?: boolean;
-  /** All possible labels — rendered invisibly to lock width to the widest */
-  stableLabels?: string[];
 }
 
 const VARIANT_STYLES = {
@@ -45,7 +43,6 @@ export function PillButton({
   ariaControls,
   className = '',
   hidden = false,
-  stableLabels,
 }: PillButtonProps) {
   const ref = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
   const dotsRef = useRef<HTMLSpanElement>(null);
@@ -108,14 +105,6 @@ export function PillButton({
 
   const content = (
     <>
-      {/* Invisible sizer: renders all possible labels to lock width to widest */}
-      {stableLabels && stableLabels.length > 0 && (
-        <span aria-hidden="true" style={{display: 'grid', visibility: 'hidden', height: 0, overflow: 'hidden'}}>
-          {stableLabels.map((l) => (
-            <span key={l} style={{gridArea: '1/1', whiteSpace: 'nowrap'}}>{l}</span>
-          ))}
-        </span>
-      )}
       <TextRoll>{label}</TextRoll>
       {dots === 'single' && (
         <span
