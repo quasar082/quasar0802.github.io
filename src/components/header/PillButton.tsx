@@ -90,7 +90,7 @@ export function PillButton({
       backgroundColor: style.bg,
       color: style.text,
       borderRadius: '9999px',
-      height: '44px',
+      height: '48px',
       paddingLeft: '40px',
       paddingRight: hasDots ? '32px' : '40px',
       gap: hasDots ? '10px' : undefined,

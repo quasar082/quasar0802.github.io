@@ -41,7 +41,6 @@ function ExternalButton({
   variant: 'light' | 'dark';
 }) {
   const btnRef = useRef<HTMLAnchorElement>(null);
-  const arrowWrapRef = useRef<HTMLSpanElement>(null);
   const reducedMotion = useRef(false);
 
   useEffect(() => {
@@ -58,9 +57,9 @@ function ExternalButton({
     if (!el) return;
     el.style.backgroundColor = hoverBg;
     if (reducedMotion.current) return;
-    const arrows = arrowWrapRef.current?.querySelectorAll('.arrow-roll');
-    if (arrows) {
-      gsap.to(arrows, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    const rolls = el.querySelectorAll('.roll-text, .arrow-roll');
+    if (rolls.length) {
+      gsap.to(rolls, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
     }
   }, [hoverBg]);
 
@@ -69,9 +68,9 @@ function ExternalButton({
     if (!el) return;
     el.style.backgroundColor = bg;
     if (reducedMotion.current) return;
-    const arrows = arrowWrapRef.current?.querySelectorAll('.arrow-roll');
-    if (arrows) {
-      gsap.to(arrows, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    const rolls = el.querySelectorAll('.roll-text, .arrow-roll');
+    if (rolls.length) {
+      gsap.to(rolls, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
     }
   }, [bg]);
 
@@ -82,7 +81,7 @@ function ExternalButton({
       target={href.startsWith('mailto:') ? undefined : '_blank'}
       rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
       role="menuitem"
-      className="dropdown-item flex items-center justify-between h-12 px-4 rounded-xl font-body text-[15px] font-medium uppercase tracking-[0.06em] cursor-pointer"
+      className="dropdown-item flex items-center justify-between h-14 px-6 rounded-xl font-body text-[15px] font-medium uppercase tracking-[0.06em] cursor-pointer"
       style={{
         backgroundColor: bg,
         color: textColor,
@@ -92,11 +91,14 @@ function ExternalButton({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <span>{label}</span>
+      {/* Label with TextRoll */}
+      <span style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1}}>
+        <span className="roll-text" style={{display: 'block'}}>{label}</span>
+        <span className="roll-text" style={{display: 'block'}}>{label}</span>
+      </span>
       {/* Arrow with TextRoll-style animation */}
       <span
-        ref={arrowWrapRef}
-        style={{overflow: 'hidden', position: 'relative', height: '14px', width: '14px'}}
+        style={{overflow: 'hidden', position: 'relative', height: '14px', width: '14px', flexShrink: 0}}
       >
         <span className="arrow-roll" style={{display: 'block'}}>
           <ArrowIcon color={textColor} />
