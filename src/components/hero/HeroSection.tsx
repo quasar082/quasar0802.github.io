@@ -163,37 +163,37 @@ export function HeroSection() {
           loading="eager"
           fetchPriority="high"
         />
-      </div>
 
-      {/* Edge gradients — fixed to section, unaffected by photo parallax */}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] z-[1]"
-        style={{
-          background:
-            'linear-gradient(to top, var(--warm-white) 10%, transparent 100%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[15%] z-[1]"
-        style={{
-          background:
-            'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-[10%] z-[1]"
-        style={{
-          background:
-            'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-[10%] z-[1]"
-        style={{
-          background:
-            'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
-        }}
-      />
+        {/* Edge gradients — follow photo parallax */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] z-[1]"
+          style={{
+            background:
+              'linear-gradient(to top, var(--warm-white) 10%, transparent 100%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[15%] z-[1]"
+          style={{
+            background:
+              'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-[10%] z-[1]"
+          style={{
+            background:
+              'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-[10%] z-[1]"
+          style={{
+            background:
+              'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
+          }}
+        />
+      </div>
 
       {/* Text block: bottom-left */}
       <div className="absolute bottom-[30%] left-6 z-10 md:left-12 lg:left-20">
