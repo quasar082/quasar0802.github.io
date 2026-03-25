@@ -93,43 +93,55 @@ export function HeroSection() {
     () => {
       if (!preloaderDone) return;
 
-      // Photo parallax + fade
-      gsap.to(photoRef.current, {
-        yPercent: -15,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
+      // Photo parallax + fade (bidirectional via fromTo)
+      gsap.fromTo(
+        photoRef.current,
+        {yPercent: 0, opacity: 1},
+        {
+          yPercent: -15,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
 
-      // Text block fade + slide up
-      gsap.to([titleRef.current, subtitleRef.current], {
-        yPercent: -30,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: '80% top',
-          scrub: true,
-        },
-      });
+      // Text block fade + slide up (bidirectional via fromTo)
+      gsap.fromTo(
+        [titleRef.current, subtitleRef.current],
+        {yPercent: 0, opacity: 1},
+        {
+          yPercent: -30,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '80% top',
+            scrub: true,
+          },
+        }
+      );
 
-      // Scroll indicator early fade
-      gsap.to(scrollIndicatorRef.current, {
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: '30% top',
-          scrub: true,
-        },
-      });
+      // Scroll indicator early fade (bidirectional via fromTo)
+      gsap.fromTo(
+        scrollIndicatorRef.current,
+        {opacity: 1},
+        {
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '30% top',
+            scrub: true,
+          },
+        }
+      );
     },
     {scope: heroRef, dependencies: [preloaderDone]}
   );
