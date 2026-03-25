@@ -159,7 +159,7 @@ export function HeroSection() {
         <img
           src="/images/hero-sazabi.png"
           alt={t('imageAlt')}
-          className="h-[70vh] w-auto object-contain md:h-[75vh] lg:h-[80vh]"
+          className="h-[70vh] min-w-[280px] w-auto object-contain md:h-[75vh] lg:h-[80vh]"
           loading="eager"
           fetchPriority="high"
         />
