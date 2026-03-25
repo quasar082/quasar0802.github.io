@@ -172,21 +172,44 @@ export function HeroSection() {
                 'linear-gradient(to top, var(--warm-white) 10%, transparent 100%)',
             }}
           />
+          {/* Subtle top edge gradient */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-[15%]"
+            style={{
+              background:
+                'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
+            }}
+          />
+          {/* Subtle left edge gradient */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-[10%]"
+            style={{
+              background:
+                'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
+            }}
+          />
+          {/* Subtle right edge gradient */}
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-[10%]"
+            style={{
+              background:
+                'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
+            }}
+          />
         </div>
       </div>
 
       {/* Text block: bottom-left */}
-      <div className="absolute bottom-[15%] left-6 z-10 md:left-12 lg:left-20">
+      <div className="absolute bottom-[22%] left-6 z-10 md:left-12 lg:left-20">
         <h1
           ref={titleRef}
-          className="font-display text-text-primary"
-          style={{fontSize: 'var(--text-display-lg)', fontWeight: 700}}
+          className="font-display text-2xl text-text-primary md:text-[1.625rem]"
         >
           {t('title')}
         </h1>
         <p
           ref={subtitleRef}
-          className="mt-2 font-body text-lg text-text-secondary md:text-xl"
+          className="mt-0.5 font-body text-lg text-text-secondary md:text-xl"
         >
           {t('subtitle')}
         </p>
