@@ -110,18 +110,18 @@ export function HeroSection() {
         }
       );
 
-      // Text block fade + slide up (bidirectional via fromTo)
+      // Text block fade + slide up — text scrolls faster than photo
       gsap.fromTo(
         [titleRef.current, subtitleRef.current],
         {yPercent: 0, opacity: 1},
         {
-          yPercent: -30,
+          yPercent: -50,
           opacity: 0,
           ease: 'none',
           scrollTrigger: {
             trigger: heroRef.current,
             start: 'top top',
-            end: '80% top',
+            end: '60% top',
             scrub: true,
           },
         }
@@ -160,7 +160,7 @@ export function HeroSection() {
           <img
             src="/images/hero-sazabi.png"
             alt={t('imageAlt')}
-            className="h-[65vh] w-auto object-contain md:h-[70vh] lg:h-[75vh]"
+            className="h-[70vh] w-auto object-contain md:h-[75vh] lg:h-[80vh]"
             loading="eager"
             fetchPriority="high"
           />

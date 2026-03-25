@@ -174,11 +174,21 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
   // Play/reverse on isOpen change
   useEffect(() => {
     const tl = tlRef.current;
-    if (!tl) return;
+    const el = wrapperRef.current;
+    if (!tl || !el) return;
     if (isOpen) {
+      el.style.visibility = 'visible';
       tl.timeScale(1).play();
     } else {
       tl.timeScale(1.4).reverse();
+      // Hide after reverse animation completes to remove lingering shadows
+      const duration = tl.duration() / 1.4;
+      const timer = setTimeout(() => {
+        if (!tlRef.current?.isActive()) {
+          el.style.visibility = 'hidden';
+        }
+      }, duration * 1000 + 50);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
