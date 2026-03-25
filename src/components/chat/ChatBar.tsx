@@ -117,7 +117,7 @@ export function ChatBar() {
       )}
 
       {/* Always-visible floating input bar */}
-      <div className="w-full px-4 pb-6 md:w-[500px] md:px-0">
+      <div className="w-full px-4 pb-8 md:w-[500px] md:px-0">
         <div className="rounded-full bg-white/60 backdrop-blur-md border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)]">
           <ChatInput />
         </div>
