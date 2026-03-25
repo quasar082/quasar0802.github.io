@@ -7,6 +7,7 @@ type CursorState = 'default' | 'expand' | 'text' | 'drag' | 'magnetic';
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
+  const ringWrapRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<SVGSVGElement>(null);
   const circleRef = useRef<SVGCircleElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
@@ -24,9 +25,10 @@ export function CustomCursor() {
 
   // Set up cursor tracking, event delegation, and state management
   useEffect(() => {
-    if (!isDesktop || !dotRef.current || !ringRef.current || !circleRef.current || !labelRef.current) return;
+    if (!isDesktop || !dotRef.current || !ringWrapRef.current || !ringRef.current || !circleRef.current || !labelRef.current) return;
 
     const dot = dotRef.current;
+    const ringWrap = ringWrapRef.current;
     const ring = ringRef.current;
     const circle = circleRef.current;
     const label = labelRef.current;
@@ -59,8 +61,9 @@ export function CustomCursor() {
     // Smooth cursor follow via gsap.quickTo — dot is instant, ring trails
     const dotXTo = gsap.quickTo(dot, 'x', {duration: 0.05, ease: 'power3'});
     const dotYTo = gsap.quickTo(dot, 'y', {duration: 0.05, ease: 'power3'});
-    const ringXTo = gsap.quickTo(ring, 'x', {duration: 0.2, ease: 'power3'});
-    const ringYTo = gsap.quickTo(ring, 'y', {duration: 0.2, ease: 'power3'});
+    // Position the wrapper div (not SVG) so rotation doesn't conflict
+    const ringXTo = gsap.quickTo(ringWrap, 'x', {duration: 0.2, ease: 'power3'});
+    const ringYTo = gsap.quickTo(ringWrap, 'y', {duration: 0.2, ease: 'power3'});
     const labelXTo = gsap.quickTo(label, 'x', {duration: 0.2, ease: 'power3'});
     const labelYTo = gsap.quickTo(label, 'y', {duration: 0.2, ease: 'power3'});
 
@@ -127,7 +130,7 @@ export function CustomCursor() {
         case 'default':
           stopSpin();
           gsap.to(dot, {opacity: 1, duration: 0.3, ease: 'power2.out'});
-          gsap.to(ring, {
+          gsap.to(ringWrap, {
             width: DEFAULT_SIZE,
             height: DEFAULT_SIZE,
             opacity: 1,
@@ -145,7 +148,7 @@ export function CustomCursor() {
 
         case 'expand':
           gsap.to(dot, {opacity: 1, duration: 0.3, ease: 'power2.out'});
-          gsap.to(ring, {
+          gsap.to(ringWrap, {
             width: EXPAND_SIZE,
             height: EXPAND_SIZE,
             opacity: 1,
@@ -165,7 +168,7 @@ export function CustomCursor() {
         case 'text':
           stopSpin();
           gsap.to(dot, {opacity: 0, duration: 0.3, ease: 'power2.out'});
-          gsap.to(ring, {
+          gsap.to(ringWrap, {
             width: TEXT_SIZE,
             height: TEXT_SIZE,
             opacity: 1,
@@ -185,7 +188,7 @@ export function CustomCursor() {
         case 'drag':
           stopSpin();
           gsap.to(dot, {opacity: 0, duration: 0.3, ease: 'power2.out'});
-          gsap.to(ring, {
+          gsap.to(ringWrap, {
             width: DRAG_SIZE,
             height: DRAG_SIZE,
             opacity: 1,
@@ -205,7 +208,7 @@ export function CustomCursor() {
         case 'magnetic':
           stopSpin();
           gsap.to(dot, {opacity: 0, duration: 0.3, ease: 'power2.out'});
-          gsap.to(ring, {opacity: 0, duration: 0.3, ease: 'power2.out'});
+          gsap.to(ringWrap, {opacity: 0, duration: 0.3, ease: 'power2.out'});
           if (magneticTarget) currentMagneticTarget = magneticTarget;
           break;
       }
@@ -303,7 +306,7 @@ export function CustomCursor() {
         currentMagneticTarget = null;
       }
 
-      gsap.set(ring, {opacity: 1});
+      gsap.set(ringWrap, {opacity: 1});
     };
   }, [isDesktop]);
 
@@ -329,32 +332,39 @@ export function CustomCursor() {
           transform: 'translate(-50%, -50%)',
         }}
       />
-      {/* Ring - SVG circle, supports dashed spinning on hover */}
-      <svg
-        ref={ringRef}
-        width={DEFAULT_SIZE}
-        height={DEFAULT_SIZE}
-        viewBox="0 0 100 100"
+      {/* Ring wrapper - positioned by GSAP x/y */}
+      <div
+        ref={ringWrapRef}
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
+          width: DEFAULT_SIZE,
+          height: DEFAULT_SIZE,
           pointerEvents: 'none',
           zIndex: 9999,
           transform: 'translate(-50%, -50%)',
-          overflow: 'visible',
         }}
       >
-        <circle
-          ref={circleRef}
-          cx={50}
-          cy={50}
-          r={48}
-          fill="transparent"
-          stroke="rgba(26, 26, 26, 0.3)"
-          strokeWidth={1.5}
-        />
-      </svg>
+        {/* Ring SVG - rotated by GSAP for spin effect */}
+        <svg
+          ref={ringRef}
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 100"
+          style={{overflow: 'visible'}}
+        >
+          <circle
+            ref={circleRef}
+            cx={50}
+            cy={50}
+            r={48}
+            fill="transparent"
+            stroke="rgba(26, 26, 26, 0.3)"
+            strokeWidth={1.5}
+          />
+        </svg>
+      </div>
       {/* Floating label for text/drag states */}
       <span
         ref={labelRef}
