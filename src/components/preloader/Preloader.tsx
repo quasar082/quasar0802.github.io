@@ -99,7 +99,7 @@ export default function Preloader() {
       const proxy = { curve: 0, slide: 0 };
 
       tl.to(proxy, {
-        curve: 0.35,
+        curve: 0.5,
         slide: 1,
         duration: 1,
         ease: 'power3.inOut',
