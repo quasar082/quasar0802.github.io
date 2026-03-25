@@ -159,7 +159,7 @@ export function HeroSection() {
         <img
           src="/images/hero-sazabi.png"
           alt={t('imageAlt')}
-          className="h-[70vh] min-w-[280px] w-auto object-contain md:h-[75vh] lg:h-[80vh]"
+          className="h-[90vh] min-w-[600px] w-auto object-contain"
           loading="eager"
           fetchPriority="high"
         />
@@ -173,21 +173,21 @@ export function HeroSection() {
           }}
         />
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-[15%] z-[1]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[40%] z-[1]"
           style={{
             background:
               'linear-gradient(to bottom, var(--warm-white) 1%, transparent 100%)',
           }}
         />
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[10%] z-[1]"
+          className="pointer-events-none absolute inset-y-0 left-0 w-[30%] z-[1]"
           style={{
             background:
               'linear-gradient(to right, var(--warm-white) 1%, transparent 100%)',
           }}
         />
         <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-[10%] z-[1]"
+          className="pointer-events-none absolute inset-y-0 right-0 w-[30%] z-[1]"
           style={{
             background:
               'linear-gradient(to left, var(--warm-white) 1%, transparent 100%)',
