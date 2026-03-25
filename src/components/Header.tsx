@@ -59,6 +59,7 @@ export function Header() {
   });
 
   const currentLabel = locale === 'en' ? 'VI' : 'EN';
+  const altLabel = locale === 'en' ? 'EN' : 'VI';
 
   return (
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
@@ -99,7 +100,7 @@ export function Header() {
             {/* TextRoll-style: two copies, roll on hover */}
             <span style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1, width: '2ch', textAlign: 'center'}}>
               <span className="roll-text" style={{display: 'block'}}>{currentLabel}</span>
-              <span className="roll-text" style={{display: 'block'}}>{currentLabel}</span>
+              <span className="roll-text" style={{display: 'block'}}>{altLabel}</span>
             </span>
           </button>
 

@@ -50,7 +50,7 @@ function ExternalButton({
 
   const isLight = variant === 'light';
   const bg = isLight ? 'var(--warm-white)' : 'var(--greige-900)';
-  const hoverBg = isLight ? 'var(--warm-white-elevated)' : 'var(--greige-700)';
+  const hoverBg = isLight ? 'var(--warm-white-elevated)' : '#4a4a4a';
   const textColor = isLight ? 'var(--greige-900)' : 'var(--warm-white)';
 
   const handleMouseEnter = useCallback(() => {
