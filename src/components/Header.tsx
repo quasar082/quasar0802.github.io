@@ -58,8 +58,8 @@ export function Header() {
     onScrollClose: closeMenu,
   });
 
-  const currentLabel = locale === 'en' ? 'VI' : 'EN';
-  const altLabel = locale === 'en' ? 'EN' : 'VI';
+  const currentLabel = locale === 'en' ? 'EN' : 'VI';
+  const altLabel = locale === 'en' ? 'VI' : 'EN';
 
   return (
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
