@@ -105,7 +105,7 @@ export function PillButton({
       height: '48px',
       ...(fixedWidth
         ? {width: `${fixedWidth}px`, paddingLeft: 0, paddingRight: 0}
-        : {paddingLeft: '40px', paddingRight: hasDots ? '32px' : '40px'}),
+        : {paddingLeft: '30px', paddingRight: hasDots ? '32px' : '30px'}),
       gap: hasDots ? '10px' : undefined,
       transition: 'background-color 300ms ease',
     } as React.CSSProperties,
