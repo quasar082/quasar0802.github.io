@@ -49,7 +49,7 @@ function ExternalButton({
 
   const isLight = variant === 'light';
   const bg = isLight ? 'var(--warm-white)' : 'var(--greige-900)';
-  const hoverBg = isLight ? 'var(--warm-white-elevated)' : '#4a4a4a';
+  const hoverBg = isLight ? 'var(--greige-200)' : 'var(--greige-700)';
   const textColor = isLight ? 'var(--greige-900)' : 'var(--warm-white)';
 
   const handleMouseEnter = useCallback(() => {
@@ -81,7 +81,7 @@ function ExternalButton({
       target={href.startsWith('mailto:') ? undefined : '_blank'}
       rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
       role="menuitem"
-      className="dropdown-item flex items-center justify-between h-14 px-6 rounded-xl font-body text-[18px] font-medium uppercase tracking-[0.06em] cursor-pointer"
+      className="dropdown-item flex items-center justify-between h-16 px-6 rounded-xl font-body text-[18px] font-medium uppercase tracking-[0.06em] cursor-pointer"
       style={{
         backgroundColor: bg,
         color: textColor,
@@ -275,7 +275,7 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
       >
         {/* Card 1: Nav links */}
         <div
-          className="dropdown-card dropdown-item rounded-2xl p-2"
+          className="dropdown-card dropdown-item rounded-2xl p-3"
           style={{
             backgroundColor: '#FFFFFF',
             boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
@@ -294,7 +294,7 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
           </nav>
         </div>
 
-        {/* Button 2: Contact / Let's Talk */}
+        {/* Button 2: Blog */}
         <div
           className="dropdown-item"
           style={{
@@ -302,8 +302,8 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
           }}
         >
           <ExternalButton
-            href="mailto:haminhquan12c7@gmail.com"
-            label={t('letsTalk')}
+            href="/blog"
+            label={t('blog')}
             variant="light"
           />
         </div>

@@ -48,11 +48,11 @@ export function NavLink({label, isActive, onClick}: NavLinkProps) {
       aria-current={isActive ? 'true' : undefined}
       className="nav-link flex items-center justify-between w-full font-body text-[18px] font-normal uppercase tracking-[0.04em] cursor-pointer"
       style={{
-        height: '48px',
+        height: '52px',
         padding: '0 16px',
         borderRadius: '12px',
         color: 'var(--greige-900)',
-        backgroundColor: isHovered ? 'var(--warm-white-elevated)' : 'transparent',
+        backgroundColor: isHovered ? 'var(--greige-200)' : 'transparent',
         transition: 'background-color 200ms ease',
       }}
       onClick={onClick}

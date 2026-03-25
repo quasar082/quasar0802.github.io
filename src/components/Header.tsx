@@ -67,7 +67,7 @@ export function Header() {
         {/* Left: Logo */}
         <TransitionLink
           href="/"
-          className="font-body text-[24px] font-medium uppercase tracking-[0.1em] transition-colors duration-200"
+          className="font-body text-[24px] font-medium uppercase tracking-[0.1em] leading-[48px] transition-colors duration-200"
           style={{color: 'var(--greige-900)'}}
           onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
             (e.currentTarget as HTMLElement).style.color = 'var(--greige-700)';
