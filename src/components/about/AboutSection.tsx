@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 import {gsap, useGSAP} from '@/lib/gsap';
 import {usePreloaderDone} from '@/hooks/usePreloaderDone';
 import {TextReveal} from '@/components/animations/TextReveal';
+import {ServicesBlock} from '@/components/about/ServicesBlock';
 
 export function AboutSection() {
   const t = useTranslations('About');
@@ -193,6 +194,11 @@ export function AboutSection() {
             </TextReveal>
           </div>
         </div>
+      </div>
+
+      {/* Services Block (D-25 to D-30) */}
+      <div className="mx-auto max-w-[1200px] px-6 md:px-8">
+        <ServicesBlock />
       </div>
     </section>
   );
