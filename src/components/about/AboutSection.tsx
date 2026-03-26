@@ -196,12 +196,12 @@ export function AboutSection() {
           {/* Bottom row: Text left (4/7) + Image right (3/7) */}
           <div
             className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-30 items-start"
-            style={{marginTop: '-12rem'}}
+            style={{marginTop: '6rem'}}
           >
             {/* Text with subtitle */}
             <div
               ref={bottomTextRef}
-              className="relative z-10 md:col-span-4 flex flex-col justify-start"
+              className="relative z-10 md:col-span-4 flex flex-col justify-start pt-16"
             >
               {/* Subtitle */}
               <div className="flex items-center gap-2 mb-6">
@@ -232,6 +232,7 @@ export function AboutSection() {
             <div
               ref={bottomImageRef}
               className="md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden"
+              style={{marginTop: '-18rem'}}
             >
               <div className="relative">
                 <img
