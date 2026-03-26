@@ -128,17 +128,17 @@ export function AboutSection() {
 
           {/* Top row: Image left (4/7) + Text right (3/7) */}
           <div className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start">
-            {/* Image — order-2 on mobile, order-1 on md+; clips right side so it only overflows left */}
+            {/* Image — clips to grid cell, overflows only left via negative margin */}
             <div
               ref={topImageRef}
               className="relative order-2 md:order-1 md:col-span-4 md:-ml-12 lg:-ml-20 overflow-hidden"
             >
-              <div className="relative overflow-visible">
+              <div className="relative">
                 <img
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
-                  className="w-auto object-contain"
-                  style={{minHeight: '90vh', maxWidth: 'none'}}
+                  className="w-full object-cover object-center"
+                  style={{height: '85vh', minHeight: '600px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
@@ -161,7 +161,7 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Text — order-1 on mobile, order-2 on md+; z-10 ensures text stays above images */}
+            {/* Text — aligned to top of image row */}
             <div
               ref={topTextRef}
               className="relative z-10 order-1 md:order-2 md:col-span-3 flex flex-col justify-start"
@@ -193,16 +193,27 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Bottom row: Text left (4/7) + Image right (3/7) — overlapping upward */}
+          {/* Bottom row: Text left (4/7) + Image right (3/7) */}
           <div
             className="grid grid-cols-1 md:grid-cols-7 gap-8 md:gap-12 items-start"
-            style={{marginTop: '-6rem'}}
+            style={{marginTop: '6rem'}}
           >
-            {/* Text — order-1 on both mobile and md+; z-10 keeps text above images */}
+            {/* Text with subtitle */}
             <div
               ref={bottomTextRef}
               className="relative z-10 md:col-span-4 flex flex-col justify-start"
             >
+              {/* Subtitle */}
+              <div className="flex items-center gap-2 mb-6">
+                <span className="text-text-muted" style={{fontSize: 'var(--text-base)'}}>✦</span>
+                <span
+                  className="font-body text-text-muted uppercase tracking-wider"
+                  style={{fontSize: 'var(--text-sm)'}}
+                >
+                  My Strength
+                </span>
+              </div>
+
               <TextReveal
                 as="p"
                 type="lines"
@@ -217,17 +228,17 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Image right — clips left side so it only overflows right */}
+            {/* Image right — clips to grid cell, overflows only right via negative margin */}
             <div
               ref={bottomImageRef}
               className="md:col-span-3 md:-mr-12 lg:-mr-20 overflow-hidden"
             >
-              <div className="relative overflow-visible">
+              <div className="relative">
                 <img
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
-                  className="w-auto object-contain ml-auto"
-                  style={{minHeight: '70vh', maxWidth: 'none'}}
+                  className="w-full object-cover object-center"
+                  style={{height: '70vh', minHeight: '500px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
