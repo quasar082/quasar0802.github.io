@@ -5,7 +5,7 @@ import {AchievementsSection} from '@/components/achievements/AchievementsSection
 import {projects} from '@/data/projects';
 import {ProjectGrid} from '@/components/projects/ProjectGrid';
 import {TransitionLink} from '@/components/transitions/TransitionLink';
-import {SvgDivider} from '@/components/animations/SvgDivider';
+
 import {buildAlternates} from '@/lib/metadata';
 import {personJsonLd, safeJsonLd} from '@/lib/jsonld';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
@@ -43,8 +43,6 @@ export default async function HomePage({
 
       {/* Hero section */}
       <HeroSection />
-
-      <SvgDivider />
 
       {/* Mini quote interstitial */}
       <MiniQuoteSection />
