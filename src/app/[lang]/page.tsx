@@ -60,7 +60,7 @@ export default async function HomePage({
       {/* Projects */}
       <div id="projects">
         <ProjectGrid projects={projects.slice(0, 6)} locale={lang} />
-        <div className="mx-auto max-w-[1200px] px-6 md:px-8 pb-section text-center">
+        <div className="mx-auto max-w-screen-2xl px-6 md:px-8 pb-section text-center">
           <TransitionLink
             href="/projects"
             className="inline-block rounded-full border border-border px-8 py-3 text-sm uppercase tracking-wider text-text-primary transition-colors hover:border-border-hover hover:bg-surface-elevated"

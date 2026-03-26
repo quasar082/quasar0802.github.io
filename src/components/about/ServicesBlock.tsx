@@ -43,7 +43,7 @@ export function ServicesBlock() {
   );
 
   return (
-    <div ref={containerRef} style={{marginTop: '160px'}}>
+    <div ref={containerRef}>
       {/* Services Title */}
       <div className="mb-20 text-center">
         <TextReveal

@@ -8,13 +8,13 @@ export function MiniQuoteSection() {
 
   return (
     <section
-      className="flex items-center justify-center px-6 md:px-8 lg:px-20"
+      className="flex items-center justify-center px-6 md:px-8 lg:px-12"
       style={{
-        paddingTop: 'var(--spacing-section)',
-        paddingBottom: 'var(--spacing-section)',
+        paddingTop: '10rem',
+        paddingBottom: '10rem',
       }}
     >
-      <div className="mx-auto max-w-[900px] text-center">
+      <div className="mx-auto max-w-screen-2xl text-center">
         <TextReveal
           as="p"
           type="words"

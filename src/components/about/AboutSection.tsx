@@ -66,10 +66,6 @@ export function AboutSection() {
     <section
       ref={sectionRef}
       className="relative overflow-hidden"
-      style={{
-        paddingTop: 'var(--spacing-section)',
-        paddingBottom: 'var(--spacing-section)',
-      }}
     >
       {/* Background image — absolute, left-shifted, vertically centered, 90vh */}
       <div
@@ -102,124 +98,130 @@ export function AboutSection() {
         />
       </div>
 
-      {/* Content — sits above the background image */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
-        {/* About Title */}
-        <div className="mb-40 text-center">
-          <TextReveal
-            as="h2"
-            type="words"
-            stagger={0.04}
-            className="font-display text-text-primary"
-            style={{
-              fontSize: 'var(--text-display-md)',
-              fontWeight: 'var(--font-weight-display)',
-              lineHeight: '1.2',
-            }}
+      {/* ===== PART 1: "Knock knock" + 2 content blocks ===== */}
+      <div
+        className="relative z-10"
+        style={{paddingTop: '10rem', paddingBottom: '10rem'}}
+      >
+        <div className="mx-auto max-w-screen-2xl px-6 md:px-8 lg:px-12">
+          {/* About Title */}
+          <div className="mb-16 text-center">
+            <TextReveal
+              as="h2"
+              type="words"
+              stagger={0.04}
+              className="font-display text-text-primary"
+              style={{
+                fontSize: 'var(--text-display-md)',
+                fontWeight: 'var(--font-weight-display)',
+                lineHeight: '1.2',
+              }}
+            >
+              {t('title')}
+            </TextReveal>
+          </div>
+
+          {/* Content Block 1: Overview / Myself */}
+          <div
+            ref={contentBlock1Ref}
+            className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]"
           >
-            {t('title')}
-          </TextReveal>
-        </div>
-
-        {/* Content Block 1: Overview / Myself */}
-        <div
-          ref={contentBlock1Ref}
-          className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]"
-        >
-          {/* Left: Labels */}
-          <div className="flex flex-col gap-2">
-            <span
-              className="font-body text-text-muted"
-              style={{fontSize: 'var(--text-sm)'}}
-            >
-              {t('overviewLabel')}
-            </span>
-            <span
-              className="font-display text-text-primary"
-              style={{
-                fontSize: 'var(--text-2xl)',
-                fontWeight: 'var(--font-weight-display)',
-              }}
-            >
-              {t('myselfLabel')}
-            </span>
+            <div className="flex flex-col gap-2">
+              <span
+                className="font-body text-text-muted"
+                style={{fontSize: 'var(--text-sm)'}}
+              >
+                {t('overviewLabel')}
+              </span>
+              <span
+                className="font-display text-text-primary"
+                style={{
+                  fontSize: 'var(--text-2xl)',
+                  fontWeight: 'var(--font-weight-display)',
+                }}
+              >
+                {t('myselfLabel')}
+              </span>
+            </div>
+            <div className="space-y-8">
+              <TextReveal
+                as="p"
+                type="lines"
+                stagger={0.05}
+                className="font-body text-text-secondary"
+                style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
+              >
+                {t('bio1')}
+              </TextReveal>
+              <TextReveal
+                as="p"
+                type="lines"
+                stagger={0.05}
+                className="font-body text-text-secondary"
+                style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
+              >
+                {t('bio2')}
+              </TextReveal>
+            </div>
           </div>
-          {/* Right: Bio paragraphs */}
-          <div className="space-y-8">
-            <TextReveal
-              as="p"
-              type="lines"
-              stagger={0.05}
-              className="font-body text-text-secondary"
-              style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
-            >
-              {t('bio1')}
-            </TextReveal>
-            <TextReveal
-              as="p"
-              type="lines"
-              stagger={0.05}
-              className="font-body text-text-secondary"
-              style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
-            >
-              {t('bio2')}
-            </TextReveal>
-          </div>
-        </div>
 
-        {/* Spacer between content blocks */}
-        <div style={{height: '280px'}} />
+          {/* Inner spacer between content blocks (smaller than section spacing) */}
+          <div style={{height: '4rem'}} />
 
-        {/* Content Block 2: Boring part / Experience with */}
-        <div
-          ref={contentBlock2Ref}
-          className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]"
-        >
-          {/* Left: Labels */}
-          <div className="flex flex-col gap-2">
-            <span
-              className="font-body text-text-muted"
-              style={{fontSize: 'var(--text-sm)'}}
-            >
-              {t('boringLabel')}
-            </span>
-            <span
-              className="font-display text-text-primary"
-              style={{
-                fontSize: 'var(--text-2xl)',
-                fontWeight: 'var(--font-weight-display)',
-              }}
-            >
-              {t('experienceLabel')}
-            </span>
-          </div>
-          {/* Right: Tech list paragraphs */}
-          <div className="space-y-8">
-            <TextReveal
-              as="p"
-              type="lines"
-              stagger={0.05}
-              className="font-body text-text-secondary"
-              style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
-            >
-              {t('tech1')}
-            </TextReveal>
-            <TextReveal
-              as="p"
-              type="lines"
-              stagger={0.05}
-              className="font-body text-text-secondary"
-              style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
-            >
-              {t('tech2')}
-            </TextReveal>
+          {/* Content Block 2: Boring part / Experience with */}
+          <div
+            ref={contentBlock2Ref}
+            className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]"
+          >
+            <div className="flex flex-col gap-2">
+              <span
+                className="font-body text-text-muted"
+                style={{fontSize: 'var(--text-sm)'}}
+              >
+                {t('boringLabel')}
+              </span>
+              <span
+                className="font-display text-text-primary"
+                style={{
+                  fontSize: 'var(--text-2xl)',
+                  fontWeight: 'var(--font-weight-display)',
+                }}
+              >
+                {t('experienceLabel')}
+              </span>
+            </div>
+            <div className="space-y-8">
+              <TextReveal
+                as="p"
+                type="lines"
+                stagger={0.05}
+                className="font-body text-text-secondary"
+                style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
+              >
+                {t('tech1')}
+              </TextReveal>
+              <TextReveal
+                as="p"
+                type="lines"
+                stagger={0.05}
+                className="font-body text-text-secondary"
+                style={{fontSize: 'var(--text-lg)', lineHeight: '1.7'}}
+              >
+                {t('tech2')}
+              </TextReveal>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Services Block — more separation */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 lg:px-12" style={{marginTop: '320px'}}>
-        <ServicesBlock />
+      {/* ===== PART 2: "I can help you with" + 3 service cards ===== */}
+      <div
+        className="relative z-10"
+        style={{paddingTop: '10rem', paddingBottom: '10rem'}}
+      >
+        <div className="mx-auto max-w-screen-2xl px-6 md:px-8 lg:px-12">
+          <ServicesBlock />
+        </div>
       </div>
     </section>
   );

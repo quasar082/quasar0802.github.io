@@ -31,7 +31,7 @@ export function SvgDivider() {
   );
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] py-8">
+    <div className="mx-auto w-full max-w-screen-2xl py-8">
       <svg
         ref={svgRef}
         viewBox="0 0 1200 80"

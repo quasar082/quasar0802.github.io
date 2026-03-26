@@ -13,7 +13,7 @@ export async function ProjectGrid({projects, locale}: ProjectGridProps) {
 
   return (
     <section className="px-6 py-section md:px-8">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-screen-2xl">
         <TextReveal
           as="h2"
           type="words"
