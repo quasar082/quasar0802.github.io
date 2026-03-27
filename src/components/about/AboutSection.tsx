@@ -237,7 +237,7 @@ export function AboutSection() {
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
                   className="w-full object-cover object-center"
-                  style={{height: '75vh', minHeight: '600px'}}
+                  style={{height: '85vh', minHeight: '600px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
@@ -339,7 +339,7 @@ export function AboutSection() {
                   src="/images/about-deepstriker.png"
                   alt="Deep Striker mech artwork"
                   className="w-full object-cover object-center"
-                  style={{height: '75vh', minHeight: '500px'}}
+                  style={{height: '85vh', minHeight: '500px'}}
                   loading="lazy"
                 />
                 {/* White blur edges */}
