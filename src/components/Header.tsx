@@ -78,7 +78,7 @@ export function Header() {
 
   return (
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 pointer-events-none" style={{opacity: 0}}>
-      <div className="mx-auto max-w-screen-2xl flex h-20 items-center justify-between px-6 md:px-8 lg:px-12 pointer-events-auto">
+      <div className="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8 pointer-events-auto">
         {/* Left: Logo */}
         <TransitionLink
           href="/"
