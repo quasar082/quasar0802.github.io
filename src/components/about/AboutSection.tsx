@@ -7,36 +7,33 @@ import {usePreloaderDone} from '@/hooks/usePreloaderDone';
 import {TextReveal} from '@/components/animations/TextReveal';
 import {ServicesBlock} from '@/components/about/ServicesBlock';
 
+const SLOT_WIDTH = 20; // 16px icon + 4px breathing room
+
 function DownloadCvButton() {
   const btnRef = useRef<HTMLAnchorElement>(null);
 
   const handleMouseEnter = useCallback(() => {
     const el = btnRef.current;
     if (!el) return;
-    el.style.backgroundColor = 'var(--greige-100)';
-    // Slide dot out to right, slide icon in from left
-    const dot = el.querySelector('.cv-dot') as HTMLElement;
-    const icon = el.querySelector('.cv-icon') as HTMLElement;
-    const textWrap = el.querySelector('.cv-text') as HTMLElement;
+    const iconSlot = el.querySelector('.cv-icon-slot') as HTMLElement;
+    const dotSlot = el.querySelector('.cv-dot-slot') as HTMLElement;
     const spans = el.querySelectorAll('.roll-text');
-    if (dot) gsap.to(dot, {x: 20, opacity: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
-    if (icon) gsap.to(icon, {x: 0, opacity: 1, duration: 0.35, ease: 'power3.inOut', overwrite: true});
-    if (textWrap) gsap.to(textWrap, {x: 8, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (iconSlot) gsap.to(iconSlot, {width: SLOT_WIDTH, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (dotSlot) gsap.to(dotSlot, {width: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
     gsap.to(spans, {y: '-100%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    el.style.backgroundColor = 'var(--greige-100)';
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     const el = btnRef.current;
     if (!el) return;
-    el.style.backgroundColor = 'transparent';
-    const dot = el.querySelector('.cv-dot') as HTMLElement;
-    const icon = el.querySelector('.cv-icon') as HTMLElement;
-    const textWrap = el.querySelector('.cv-text') as HTMLElement;
+    const iconSlot = el.querySelector('.cv-icon-slot') as HTMLElement;
+    const dotSlot = el.querySelector('.cv-dot-slot') as HTMLElement;
     const spans = el.querySelectorAll('.roll-text');
-    if (dot) gsap.to(dot, {x: 0, opacity: 1, duration: 0.35, ease: 'power3.inOut', overwrite: true});
-    if (icon) gsap.to(icon, {x: -12, opacity: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
-    if (textWrap) gsap.to(textWrap, {x: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (iconSlot) gsap.to(iconSlot, {width: 0, duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    if (dotSlot) gsap.to(dotSlot, {width: SLOT_WIDTH, duration: 0.35, ease: 'power3.inOut', overwrite: true});
     gsap.to(spans, {y: '0%', duration: 0.35, ease: 'power3.inOut', overwrite: true});
+    el.style.backgroundColor = 'transparent';
   }, []);
 
   return (
@@ -52,21 +49,20 @@ function DownloadCvButton() {
         borderRadius: '9999px',
         height: '48px',
         paddingLeft: '30px',
-        paddingRight: '32px',
-        gap: '10px',
+        paddingRight: '30px',
         transition: 'background-color 300ms ease',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Download icon — hidden by default, slides in on hover */}
+      {/* Icon slot — width 0 by default, expands on hover */}
       <span
-        className="cv-icon"
+        className="cv-icon-slot"
         style={{
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
-          opacity: 0,
-          transform: 'translateX(-12px)',
+          overflow: 'hidden',
+          width: 0,
           flexShrink: 0,
         }}
       >
@@ -76,22 +72,33 @@ function DownloadCvButton() {
       </span>
 
       {/* Text with roll effect */}
-      <div className="cv-text" style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1}}>
+      <div style={{overflow: 'hidden', position: 'relative', height: '1em', lineHeight: 1}}>
         <span className="roll-text" style={{display: 'block'}}>Download CV</span>
         <span className="roll-text" style={{display: 'block'}}>Download CV</span>
       </div>
 
-      {/* Single dot — slides out on hover */}
+      {/* Dot slot — width 20 by default, collapses on hover */}
       <span
-        className="cv-dot"
+        className="cv-dot-slot"
         style={{
-          width: '5px',
-          height: '5px',
-          borderRadius: '50%',
-          backgroundColor: 'var(--greige-900)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          overflow: 'hidden',
+          width: SLOT_WIDTH,
           flexShrink: 0,
         }}
-      />
+      >
+        <span
+          style={{
+            width: '5px',
+            height: '5px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--greige-900)',
+            flexShrink: 0,
+          }}
+        />
+      </span>
     </a>
   );
 }
