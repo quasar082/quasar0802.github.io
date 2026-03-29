@@ -346,10 +346,10 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Row 1-2, Col 8-10: Image right — spans both rows, self-end to overlap upward */}
+            {/* Row 2, Col 8-10: Image right — row 2 only, self-end to sit lower */}
             <div
               ref={bottomImageRef}
-              className="order-4 overflow-hidden self-end md:[grid-row:1/3] md:[grid-column:8/11]"
+              className="order-4 overflow-hidden self-end md:[grid-row:2] md:[grid-column:8/11]"
             >
               <div className="relative">
                 <img
