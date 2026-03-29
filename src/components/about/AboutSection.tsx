@@ -349,11 +349,11 @@ export function AboutSection() {
               </TextReveal>
             </div>
 
-            {/* Row 1-2, Col 8-10: Image right (col 7 is empty spacer) — spans both rows */}
+            {/* Row 2, Col 8-10: Image right (col 7 is empty spacer) — offset down */}
             <div
               ref={bottomImageRef}
               className="order-4 overflow-hidden"
-              style={{gridRow: '1 / 3', gridColumn: '8 / 11', alignSelf: 'end'}}
+              style={{gridRow: '2', gridColumn: '8 / 11', marginTop: '8rem'}}
             >
               <div className="relative">
                 <img
