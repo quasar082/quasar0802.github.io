@@ -349,7 +349,7 @@ export function AboutSection() {
             {/* Row 1-2, Col 8-10: Image right — spans both rows, nudged down */}
             <div
               ref={bottomImageRef}
-              className="order-4 overflow-hidden self-end mt-40 md:[grid-row:1/3] md:[grid-column:7/11]"
+              className="order-4 overflow-hidden self-end mt-40 md:[grid-row:2/3] md:[grid-column:7/11]"
             >
               <div className="relative">
                 <img
