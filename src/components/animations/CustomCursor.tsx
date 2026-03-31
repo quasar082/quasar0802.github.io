@@ -13,6 +13,12 @@ export function CustomCursor() {
   const labelRef = useRef<HTMLSpanElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // quickTo setters — pre-allocated, no tween allocation per mousemove event
+  const moveRingWrapX = useRef<((value: number) => void) | null>(null);
+  const moveRingWrapY = useRef<((value: number) => void) | null>(null);
+  const moveLabelX = useRef<((value: number) => void) | null>(null);
+  const moveLabelY = useRef<((value: number) => void) | null>(null);
+
   // Detect pointer:fine (desktop with precise pointer)
   useEffect(() => {
     const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -36,6 +42,12 @@ export function CustomCursor() {
     let currentState: CursorState = 'default';
     let currentMagneticTarget: HTMLElement | null = null;
     let spinTween: gsap.core.Tween | null = null;
+
+    // Pre-allocate quickTo setters for ring and label position tracking
+    moveRingWrapX.current = gsap.quickTo(ringWrap, 'x', {duration: 0.2, ease: 'power3'});
+    moveRingWrapY.current = gsap.quickTo(ringWrap, 'y', {duration: 0.2, ease: 'power3'});
+    moveLabelX.current = gsap.quickTo(label, 'x', {duration: 0.2, ease: 'power3'});
+    moveLabelY.current = gsap.quickTo(label, 'y', {duration: 0.2, ease: 'power3'});
 
     // SVG is always 100x100 viewBox, we scale via width/height
     const SVG_SIZE = 100;
@@ -209,9 +221,11 @@ export function CustomCursor() {
     const onMouseMove = (e: MouseEvent) => {
       // Dot follows instantly
       gsap.set(dot, {x: e.clientX, y: e.clientY});
-      // Ring and label trail with smooth follow
-      gsap.to(ringWrap, {x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power3', overwrite: true});
-      gsap.to(label, {x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power3', overwrite: true});
+      // Ring and label trail with smooth follow via pre-allocated quickTo setters
+      moveRingWrapX.current?.(e.clientX);
+      moveRingWrapY.current?.(e.clientY);
+      moveLabelX.current?.(e.clientX);
+      moveLabelY.current?.(e.clientY);
 
       // Magnetic effect: shift target element toward cursor
       if (currentState === 'magnetic' && currentMagneticTarget) {

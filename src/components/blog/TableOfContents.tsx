@@ -2,7 +2,6 @@
 
 import {useState, useRef, useEffect} from 'react';
 import {useTranslations} from 'next-intl';
-import {gsap, ScrollTrigger, useGSAP} from '@/lib/gsap';
 
 interface Heading {
   level: number;
@@ -16,30 +15,25 @@ export function TableOfContents({headings}: {headings: Heading[]}) {
   const [activeId, setActiveId] = useState<string>('');
   const tocRef = useRef<HTMLDivElement>(null);
 
-  // ScrollTrigger-based active heading tracking
-  useGSAP(() => {
+  // IntersectionObserver-based active heading tracking (async, off main scroll thread)
+  useEffect(() => {
     if (headings.length === 0) return;
 
-    // Small delay to ensure MDX content is rendered and heading elements exist
-    const timer = setTimeout(() => {
-      headings.forEach((heading) => {
-        const el = document.getElementById(heading.id);
-        if (!el) return;
-
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 20%',
-          end: 'bottom 20%',
-          onEnter: () => setActiveId(heading.id),
-          onEnterBack: () => setActiveId(heading.id),
+    const headingEls = document.querySelectorAll('h2[id], h3[id]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
         });
-      });
-    }, 500);
+      },
+      {rootMargin: '-20% 0px -70% 0px', threshold: 0},
+    );
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, {dependencies: [headings]});
+    headingEls.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [headings]);
 
   if (headings.length === 0) return null;
 

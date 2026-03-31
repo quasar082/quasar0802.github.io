@@ -111,13 +111,12 @@ export function BlogGrid({posts, locale}: BlogGridProps) {
         <>
         <div
             ref={gridRef}
-            className="mt-10 columns-1 md:columns-2 gap-x-8"
+            className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12"
           >
               {paginatedPosts.map((post, i) => (
                 <div
                   key={post.slug}
-                  className="blog-grid-item break-inside-avoid"
-                  style={{marginBottom: '48px'}}
+                  className="blog-grid-item"
                 >
                   {/* Divider line above each card */}
                   <div
