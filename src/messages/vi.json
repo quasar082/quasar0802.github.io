@@ -49,11 +49,11 @@
     "strengthBody": "Mình tập trung vào thiết kế kiến trúc, tối ưu vận hành và mở rộng hệ thống thông minh — từ xử lý dữ liệu phi cấu trúc quy mô lớn, hệ thống đa tác tử, chatbot đến triển khai thực tế — mang đến giải pháp AI hiệu quả, linh hoạt và bền vững.",
     "servicesTitle": "Mình có thể giúp bạn với...",
     "service1Title": "AI Chatbot & Intelligence",
-    "service1Body": "Xây dựng hệ thống AI chatbot end-to-end — từ pipeline RAG và quy trình agentic đến tự động hóa dựa trên logic kinh doanh thực tế.\nLàm việc với dữ liệu phức tạp, phi cấu trúc, mình tập trung vào việc làm cho mô hình đáng tin cậy, có ngữ cảnh và phù hợp thông qua prompt engineering chặt chẽ.",
+    "service1Body": "Xây dựng hệ thống AI chatbot end-to-end — từ pipeline RAG và quy trình agentic đến tự động hóa dựa trên logic kinh doanh thực tế. Làm việc với dữ liệu phức tạp, phi cấu trúc, mình tập trung vào việc làm cho mô hình đáng tin cậy, có ngữ cảnh và phù hợp thông qua prompt engineering chặt chẽ.",
     "service2Title": "AI System Architecture & Direction",
-    "service2Body": "Thiết kế kiến trúc hệ thống AI định nghĩa cách trí thông minh vận hành ở quy mô lớn.\nTừ hệ thống đa tác tử đến pipeline LLM, mình cấu trúc cách các thành phần tương tác, suy luận và phát triển — đồng thời định hình backend, API và lớp dữ liệu thành hệ thống sản xuất liên kết.",
+    "service2Body": "Thiết kế kiến trúc hệ thống AI định nghĩa cách trí thông minh vận hành ở quy mô lớn. Từ hệ thống đa tác tử đến pipeline LLM, mình cấu trúc cách các thành phần tương tác, suy luận và phát triển — đồng thời định hình backend, API và lớp dữ liệu thành hệ thống sản xuất liên kết.",
     "service3Title": "Fullstack AI Development",
-    "service3Body": "Biến ý tưởng thành sản phẩm AI hoàn chỉnh.\nTừ giao diện frontend đến dịch vụ backend, mình xây dựng hệ thống nơi trí thông minh được tích hợp liền mạch — mang đến ứng dụng có thể sử dụng, mở rộng và sẵn sàng cho triển khai thực tế."
+    "service3Body": "Biến ý tưởng thành sản phẩm AI hoàn chỉnh. Từ giao diện frontend đến dịch vụ backend, mình xây dựng hệ thống nơi trí thông minh được tích hợp liền mạch — mang đến ứng dụng có thể sử dụng, mở rộng và sẵn sàng cho triển khai thực tế."
   },
   "Achievements": {
     "heading": "Thành tựu",
