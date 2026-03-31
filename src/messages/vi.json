@@ -41,10 +41,9 @@
   },
   "About": {
     "quote": "Tu nhung y niem mo ho den dinh hinh ngay mai.\nThong qua nhung co may thong minh.",
-    "introHeading": "Artificial Minds,\nNatural Words",
-    "aboutSubtitle": "about myself",
-    "introBio": "Minh la Ha Minh Quan — Quasar, Ky su AI tai Viet Nam.\nThe manh cua minh nam o viec xay dung he thong tri tue nhan tao va pipeline end-to-end.",
-    "introFocus": "Minh tap trung vao thiet ke kien truc, toi uu van hanh va mo rong he thong thong minh — tu xu ly du lieu phi cau truc quy mo lon, he thong da tac tu, chatbot den trien khai thuc te — mang den giai phap AI hieu qua, linh hoat va ben vung.",
+    "introSubtitle": "Tôi là ai",
+    "introHeading": "HÀ MINH QUÂN A.K.A QUASAR — KỸ SƯ AI TẠI VIỆT NAM, XÂY DỰNG HỆ THỐNG TRÍ TUỆ NHÂN TẠO VÀ PIPELINE END-TO-END.",
+    "introTagline": "Artificial Minds,\nNatural Words",
     "servicesTitle": "Minh co the giup ban voi...",
     "service1Title": "AI Chatbot & Intelligence",
     "service1Body": "Xay dung he thong AI chatbot end-to-end — tu pipeline RAG va quy trinh agentic den tu dong hoa dua tren logic kinh doanh thuc te.\nLam viec voi du lieu phuc tap, phi cau truc, minh tap trung vao viec lam cho mo hinh dang tin cay, co ngu canh va phu hop thong qua prompt engineering chat che.",
