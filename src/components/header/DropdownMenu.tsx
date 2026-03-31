@@ -3,7 +3,7 @@
 import {useRef, useEffect, useCallback, useState, type RefObject} from 'react';
 import {gsap, useGSAP} from '@/lib/gsap';
 import {useLenis} from 'lenis/react';
-import {useTranslations} from 'next-intl';
+import {useTranslations, useLocale} from 'next-intl';
 import {NavLink} from './NavLink';
 import {useActiveSection, NAV_SECTIONS} from './useActiveSection';
 
@@ -74,12 +74,15 @@ function ExternalButton({
     }
   }, [bg]);
 
+  const isInternal = href.startsWith('/') && !href.startsWith('//');
+  const isMailto = href.startsWith('mailto:');
+
   return (
     <a
       ref={btnRef}
       href={href}
-      target={href.startsWith('mailto:') ? undefined : '_blank'}
-      rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+      target={isInternal || isMailto ? undefined : '_blank'}
+      rel={isInternal || isMailto ? undefined : 'noopener noreferrer'}
       role="menuitem"
       className="dropdown-item flex items-center justify-between w-full h-16 px-8 rounded-xl font-body text-[18px] font-medium uppercase tracking-[0.06em] cursor-pointer"
       style={{
@@ -117,6 +120,7 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const activeSection = useActiveSection();
   const t = useTranslations('Header');
+  const locale = useLocale();
   const lenis = useLenis();
   const reducedMotion = useRef(false);
   const [dropdownWidth, setDropdownWidth] = useState<number>(0);
@@ -318,7 +322,7 @@ export function DropdownMenu({isOpen, onClose, actionsRef}: DropdownMenuProps) {
           }}
         >
           <ExternalButton
-            href="/blog"
+            href={`/${locale}/blog`}
             label={t('blog')}
             variant="light"
           />
