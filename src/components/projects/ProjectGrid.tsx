@@ -26,11 +26,12 @@ export async function ProjectGrid({projects, locale}: ProjectGridProps) {
           {t('heading')}
         </TextReveal>
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.slug}
               project={project}
               locale={locale}
+              index={index}
             />
           ))}
         </div>
