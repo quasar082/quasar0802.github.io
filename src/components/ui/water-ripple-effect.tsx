@@ -75,22 +75,14 @@ export default function WaterRippleEffect({
       loadedTexture.generateMipmaps = true
       loadedTexture.needsUpdate = true
 
-      // Contain mode: resize canvas to fit image within container, preserving image aspect ratio
+      // Resize canvas to match image's native aspect ratio based on container width
+      // Parent overflow:hidden will clip if the image is taller than the container
       const imgW = loadedTexture.image.width
       const imgH = loadedTexture.image.height
       if (imgH > 0 && imgW > 0) {
         const textureAspect = imgW / imgH
-        const containerAspect = width / height
-        let fitW: number, fitH: number
-        if (containerAspect > textureAspect) {
-          // Container wider → image height-limited
-          fitH = height
-          fitW = Math.round(height * textureAspect)
-        } else {
-          // Container taller → image width-limited
-          fitW = width
-          fitH = Math.round(width / textureAspect)
-        }
+        const fitW = width
+        const fitH = Math.round(width / textureAspect)
         renderer.setSize(fitW, fitH)
       }
     })

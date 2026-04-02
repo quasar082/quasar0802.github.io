@@ -84,7 +84,7 @@ export function WaterRippleImage({
   return (
     <div
       ref={containerRef}
-      className={`flex items-center justify-center ${className}`}
+      className={`overflow-hidden ${className}`}
       style={mergedStyle}
       role="img"
       aria-label={alt}
