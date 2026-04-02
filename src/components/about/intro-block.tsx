@@ -6,6 +6,7 @@ import {TextReveal} from '@/components/ui/text-reveal';
 import {DownloadCvButton} from '@/components/about/download-cv-button';
 import {gsap, useGSAP} from '@/lib/animations/gsap';
 import {usePreloaderDone} from '@/lib/hooks/use-preloader-done';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 
 export function IntroBlock() {
   const t = useTranslations('About');
@@ -63,7 +64,7 @@ export function IntroBlock() {
         className="relative overflow-hidden order-2 md:order-1 md:[grid-column:1/6] self-center"
       >
         <div className="relative">
-          <img
+          <WaterRippleImage
             src="/images/about-deepstriker.png"
             alt="Deep Striker mech artwork"
             className="w-full object-cover object-center"

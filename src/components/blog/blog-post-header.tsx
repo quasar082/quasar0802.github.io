@@ -1,4 +1,5 @@
 import type {PostMeta} from '@/lib/blog';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 
 interface BlogPostHeaderProps {
   meta: PostMeta;
@@ -60,11 +61,11 @@ export function BlogPostHeader({meta, locale}: BlogPostHeaderProps) {
       {/* Cover image (full content-width) */}
       {meta.coverImage && (
         <div className="mt-8 overflow-hidden rounded-lg">
-          <img
+          <WaterRippleImage
             src={meta.coverImage}
             alt={meta.title}
             className="w-full object-cover"
-            style={{aspectRatio: '16/9'}}
+            aspectRatio="16/9"
             loading="eager"
           />
         </div>

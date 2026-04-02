@@ -3,6 +3,7 @@ import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import Link from 'next/link';
 import {TextReveal} from '@/components/ui/text-reveal';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 import {buildAlternates} from '@/lib/metadata';
 import type {Metadata} from 'next';
 
@@ -128,10 +129,11 @@ export default async function ProjectDetailPage({
                 key={src}
                 className="overflow-hidden rounded-lg bg-surface-elevated"
               >
-                <img
+                <WaterRippleImage
                   src={src}
                   alt={`${title} screenshot ${i + 1}`}
                   className="w-full object-cover"
+                  aspectRatio="16/9"
                   loading="lazy"
                 />
               </div>

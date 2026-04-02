@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 import type {Project} from '@/lib/data/projects';
 
 interface ProjectCardProps {
@@ -18,10 +19,11 @@ export function ProjectCard({project, locale, index}: ProjectCardProps) {
     >
       {/* Image — 3:4 portrait, borderless editorial */}
       <div className="aspect-[3/4] overflow-hidden" data-parallax-image>
-        <img
+        <WaterRippleImage
           src={project.thumbnail}
           alt={title}
-          className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          className="size-full object-cover"
+          aspectRatio="3/4"
           loading="lazy"
         />
       </div>

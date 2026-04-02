@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import {useRef} from 'react';
 import {gsap, useGSAP} from '@/lib/animations/gsap';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 import type {PostMeta} from '@/lib/blog';
 
 interface BlogCardProps {
@@ -74,14 +74,11 @@ export function BlogCard({post, locale, index = 0}: BlogCardProps) {
       {post.coverImage && (
         <>
           <div className="mt-4 overflow-hidden rounded-lg">
-            <img
+            <WaterRippleImage
               src={post.coverImage}
               alt={post.title}
-              className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              style={{
-                transitionTimingFunction: 'cubic-bezier(0.33, 1, 0.68, 1)',
-                aspectRatio: '16/9',
-              }}
+              className="w-full object-cover"
+              aspectRatio="16/9"
               loading="lazy"
             />
           </div>

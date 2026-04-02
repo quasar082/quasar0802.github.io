@@ -33,7 +33,7 @@ export const projects: Project[] = [
     descriptionVi:
       'Nen tang dieu phoi cap san xuat phoi hop nhieu tac nhan AI de giai quyet cac tac vu phuc tap. Cac tac nhan giao tiep qua bus tin nhan chung, thuong luong phan bo tac vu, va duy tri ngu canh xuyen suot cac quy trinh nhieu buoc.',
     tags: ['LangGraph', 'FastAPI', 'Redis', 'WebSocket'],
-    thumbnail: '/images/projects/project-1.jpg',
+    thumbnail: '/images/projects/project-1.svg',
     links: {
       live: 'https://demo.example.com/orchestrator',
       github: 'https://github.com/rayquasar18/multi-agent-orchestrator',
@@ -49,8 +49,8 @@ export const projects: Project[] = [
       solutionVi:
         'Xay dung mot dong co dieu phoi dua tren do thi su dung LangGraph, trong do moi tac nhan la mot node voi dau vao/dau ra co kieu. Mot bo dieu phoi trung tam dinh tuyen tac vu dua tren kha nang va tai cua tac nhan. Redis Streams xu ly truyen tin giua tac nhan voi dam bao gui. Nen tang bao gom bang dieu khien thoi gian thuc hien thi trang thai tac nhan, luong tin nhan va vet thuc thi.',
       screenshots: [
-        '/images/projects/orchestrator-1.jpg',
-        '/images/projects/orchestrator-2.jpg',
+        '/images/projects/orchestrator-1.svg',
+        '/images/projects/orchestrator-2.svg',
       ],
     },
   },
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     descriptionVi:
       'He thong truy xuat tri thuc thong minh ket hop tim kiem vector voi loc sieu du lieu co cau truc. Ho tro tai lieu da phuong thuc, chien luoc chia khuc tu dong, va phan hoi co trich dan voi diem tin cay.',
     tags: ['LangChain', 'Pinecone', 'Next.js', 'OpenAI'],
-    thumbnail: '/images/projects/project-2.jpg',
+    thumbnail: '/images/projects/project-2.svg',
     links: {
       live: 'https://demo.example.com/knowledge-base',
       github: 'https://github.com/rayquasar18/rag-knowledge-base',
@@ -79,8 +79,8 @@ export const projects: Project[] = [
       solutionVi:
         'Thiet ke mot pipeline RAG voi truy xuat lai: embedding vector day du qua OpenAI ket hop BM25 thu cho do chinh xac tu khoa. Tai lieu duoc chia khuc bang chien luoc de quy giu nguyen ranh gioi phan. Phan hoi bao gom trich dan noi dong voi so trang, va diem tin cay duoc hieu chinh dua tren cac cap cau hoi-tra loi da biet.',
       screenshots: [
-        '/images/projects/rag-1.jpg',
-        '/images/projects/rag-2.jpg',
+        '/images/projects/rag-1.svg',
+        '/images/projects/rag-2.svg',
       ],
     },
   },
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     descriptionVi:
       'Dich vu phan tich cam xuc thong luong cao xu ly hang ngan bai dang mang xa hoi moi giay. Bao gom phan tich cam xuc cap khia canh, phat hien cam xuc, va xu ly mai mia voi cac mo hinh transformer tinh chinh tuy chinh.',
     tags: ['Transformers', 'FastAPI', 'Kafka', 'Docker'],
-    thumbnail: '/images/projects/project-3.jpg',
+    thumbnail: '/images/projects/project-3.svg',
     links: {
       github: 'https://github.com/rayquasar18/sentiment-analysis-api',
       paper: 'https://arxiv.org/abs/example',
@@ -109,8 +109,8 @@ export const projects: Project[] = [
       solutionVi:
         'Tinh chinh mo hinh DeBERTa-v3 tren tap du lieu tuy chinh voi chu thich cam xuc cap khia canh. API tiep nhan tin nhan tu cac topic Kafka, chay suy luan theo lo tren GPU, va xuat ban cac su kien da lam giau tro lai. Bao gom phan loai cam xuc (vui, gian, ngac nhien, v.v.) va dau phat hien mai mia duoc huan luyen tren tap du lieu mai mia Twitter.',
       screenshots: [
-        '/images/projects/sentiment-1.jpg',
-        '/images/projects/sentiment-2.jpg',
+        '/images/projects/sentiment-1.svg',
+        '/images/projects/sentiment-2.svg',
       ],
     },
   },

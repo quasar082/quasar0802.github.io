@@ -6,6 +6,7 @@ import {useLenis} from 'lenis/react';
 import {gsap, ScrollTrigger, useGSAP} from '@/lib/animations/gsap';
 import {usePreloaderDone} from '@/lib/hooks/use-preloader-done';
 import {PillButton} from '@/components/ui/pill-button';
+import {WaterRippleImage} from '@/components/ui/water-ripple-image';
 
 export function HeroSection() {
   const t = useTranslations('Hero');
@@ -181,12 +182,11 @@ export function HeroSection() {
         ref={photoRef}
         className="absolute inset-0 flex items-end justify-center"
       >
-        <img
+        <WaterRippleImage
           src="/images/hero-sazabi.png"
           alt={t('imageAlt')}
           className="h-[90vh] min-h-[800px] min-w-[1200px] w-auto object-contain"
           loading="eager"
-          fetchPriority="high"
         />
 
         {/* Edge gradients — follow photo parallax */}
