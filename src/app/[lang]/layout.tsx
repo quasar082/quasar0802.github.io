@@ -2,7 +2,7 @@ import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {getMessages, setRequestLocale, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/lib/i18n/routing';
-import {marlinGeo, saprona, geistMono} from '@/lib/fonts';
+import {satoshi} from '@/lib/fonts';
 import {Header} from '@/components/header/header';
 import {ChatBar} from '@/components/chat/chat-bar';
 import {Footer} from '@/components/footer/footer';
@@ -69,7 +69,7 @@ export default async function LocaleLayout({
   return (
     <html lang={lang}>
       <body
-        className={`${marlinGeo.variable} ${saprona.variable} ${geistMono.variable} antialiased`}
+        className={`${satoshi.variable} antialiased`}
       >
         {/* Preloader curtain — pure HTML outside React Suspense to avoid hidden="" wrapper.
             Renders on first paint as solid black overlay. Inline script removes it

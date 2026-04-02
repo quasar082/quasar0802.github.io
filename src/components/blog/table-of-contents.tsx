@@ -63,7 +63,7 @@ export function TableOfContents({headings}: {headings: Heading[]}) {
               style={{
                 color: isActive ? 'var(--greige-900)' : 'var(--greige-500)',
                 fontWeight: isActive ? 500 : 300,
-                fontFamily: 'var(--font-marlin)',
+                fontFamily: 'var(--font-satoshi)',
               }}
             >
               {h.text}

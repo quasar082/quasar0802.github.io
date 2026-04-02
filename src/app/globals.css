@@ -53,9 +53,9 @@ a:focus,
   --spacing-section-sm: 5rem;
 
   /* Fonts */
-  --font-display: var(--font-saprona);
-  --font-body: var(--font-marlin);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-satoshi);
+  --font-body: var(--font-satoshi);
+  --font-mono: var(--font-satoshi);
 
   /* Typography scale -- fluid display */
   --text-display-xxl: clamp(5rem, 2.5rem + 7vw, 12rem);
