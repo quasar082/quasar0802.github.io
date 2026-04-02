@@ -1,15 +1,15 @@
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {getMessages, setRequestLocale, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
+import {routing} from '@/lib/i18n/routing';
 import {marlinGeo, saprona, geistMono} from '@/lib/fonts';
-import {Header} from '@/components/Header';
-import {ChatBar} from '@/components/chat/ChatBar';
-import {Footer} from '@/components/footer/Footer';
-import {CustomCursor} from '@/components/animations/CustomCursor';
-import {SmoothScrollProvider} from '@/components/providers/SmoothScrollProvider';
-import {TransitionProvider} from '@/components/transitions/TransitionProvider';
-import Preloader from '@/components/preloader/Preloader';
+import {Header} from '@/components/header/header';
+import {ChatBar} from '@/components/chat/chat-bar';
+import {Footer} from '@/components/footer/footer';
+import {CustomCursor} from '@/components/cursor/custom-cursor';
+import {SmoothScrollProvider} from '@/components/providers/smooth-scroll-provider';
+import {TransitionProvider} from '@/components/providers/transition-provider';
+import Preloader from '@/components/preloader/preloader';
 import {SITE_URL, SITE_NAME, defaultOgImage} from '@/lib/metadata';
 import type {Metadata} from 'next';
 

@@ -1,7 +1,7 @@
 import {getAllPosts, getFeaturedPosts} from '@/lib/blog';
-import {FeaturedSlider} from '@/components/blog/FeaturedSlider';
-import {BlogGrid} from '@/components/blog/BlogGrid';
-import {TextReveal} from '@/components/animations/TextReveal';
+import {FeaturedSlider} from '@/components/blog/featured-slider';
+import {BlogGrid} from '@/components/blog/blog-grid';
+import {TextReveal} from '@/components/ui/text-reveal';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {buildAlternates} from '@/lib/metadata';
 import type {Metadata} from 'next';

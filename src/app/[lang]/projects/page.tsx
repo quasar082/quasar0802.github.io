@@ -1,5 +1,5 @@
-import {projects} from '@/data/projects';
-import {ProjectGrid} from '@/components/projects/ProjectGrid';
+import {projects} from '@/lib/data/projects';
+import {ProjectGrid} from '@/components/projects/project-grid';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {buildAlternates} from '@/lib/metadata';
 import type {Metadata} from 'next';

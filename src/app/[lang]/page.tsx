@@ -1,9 +1,9 @@
-import {HeroSection} from '@/components/hero/HeroSection';
-import {MiniQuoteSection} from '@/components/about/MiniQuoteSection';
-import {AboutSection} from '@/components/about/AboutSection';
-import {AchievementsSection} from '@/components/achievements/AchievementsSection';
-import {projects} from '@/data/projects';
-import {ProjectsSection} from '@/components/projects/ProjectsSection';
+import {HeroSection} from '@/components/hero/hero-section';
+import {MiniQuoteSection} from '@/components/about/mini-quote-section';
+import {AboutSection} from '@/components/about/about-section';
+import {AchievementsSection} from '@/components/achievements/achievements-section';
+import {projects} from '@/lib/data/projects';
+import {ProjectsSection} from '@/components/projects/projects-section';
 
 import {buildAlternates} from '@/lib/metadata';
 import {personJsonLd, safeJsonLd} from '@/lib/jsonld';

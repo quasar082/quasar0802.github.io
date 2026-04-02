@@ -1,8 +1,8 @@
-import {projects} from '@/data/projects';
+import {projects} from '@/lib/data/projects';
 import {setRequestLocale, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import Link from 'next/link';
-import {TextReveal} from '@/components/animations/TextReveal';
+import {TextReveal} from '@/components/ui/text-reveal';
 import {buildAlternates} from '@/lib/metadata';
 import type {Metadata} from 'next';
 
