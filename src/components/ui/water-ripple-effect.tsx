@@ -73,13 +73,6 @@ export default function WaterRippleEffect({
       loadedTexture.wrapT = THREE.ClampToEdgeWrapping
       loadedTexture.generateMipmaps = true
       loadedTexture.needsUpdate = true
-
-      // Compute texture aspect ratio and update uniform
-      const imgW = loadedTexture.image.width
-      const imgH = loadedTexture.image.height
-      if (materialRef.current && imgH > 0) {
-        materialRef.current.uniforms.textureAspect.value = imgW / imgH
-      }
     })
 
     const vertexShader = `
@@ -104,8 +97,6 @@ export default function WaterRippleEffect({
       uniform float waveFrequency;
       uniform float rippleFrequency;
       uniform float distortionAmount;
-      uniform float textureAspect;
-      uniform float containerAspect;
       varying vec2 vUv;
       varying vec2 vPosition;
 
@@ -116,20 +107,7 @@ export default function WaterRippleEffect({
 
       void main() {
         vec2 uv = vUv;
-
-        // Cover-style UV mapping: preserve image aspect ratio
-        vec2 coverUv = uv;
-        float ratioX = containerAspect / textureAspect;
-        float ratioY = textureAspect / containerAspect;
-        if (containerAspect > textureAspect) {
-          // Container is wider than texture -> scale Y, center vertically
-          coverUv.y = coverUv.y * ratioX + (1.0 - ratioX) * 0.5;
-        } else {
-          // Container is taller than texture -> scale X, center horizontally
-          coverUv.x = coverUv.x * ratioY + (1.0 - ratioY) * 0.5;
-        }
-        uv = coverUv;
-
+        
         // Reduced intensity for global waves to preserve image quality
         float waveScale = waveIntensity * 0.5; // Reduce default intensity
         
@@ -200,9 +178,7 @@ export default function WaterRippleEffect({
         animationSpeed: { value: animationSpeed },
         waveFrequency: { value: waveFrequency },
         rippleFrequency: { value: rippleFrequency },
-        distortionAmount: { value: distortionAmount },
-        textureAspect: { value: 1.0 },
-        containerAspect: { value: width / height }
+        distortionAmount: { value: distortionAmount }
       },
       vertexShader,
       fragmentShader,
