@@ -3,7 +3,7 @@
 import {useRef} from 'react';
 import {useTranslations} from 'next-intl';
 import {TextReveal} from '@/components/ui/text-reveal';
-import {DownloadCvButton} from '@/components/about/download-cv-button';
+import {PillButton} from '@/components/ui/pill-button';
 import {gsap, useGSAP} from '@/lib/animations/gsap';
 import {usePreloaderDone} from '@/lib/hooks/use-preloader-done';
 import {WaterRippleImage} from '@/components/ui/water-ripple-image';
@@ -137,7 +137,16 @@ export function IntroBlock() {
 
         {/* Download CV button — right aligned */}
         <div ref={cvBtnWrapRef} className="flex justify-end mt-8">
-          <DownloadCvButton />
+          <PillButton
+            label="Download CV"
+            variant="outline"
+            href="/cv.pdf"
+            icon={
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2v8m0 0L5 7m3 3l3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            }
+          />
         </div>
       </div>
     </div>
