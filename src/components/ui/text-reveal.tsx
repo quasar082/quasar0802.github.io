@@ -1,76 +1,80 @@
-'use client';
+"use client"
 
-import {useRef} from 'react';
-import {gsap, SplitText, useGSAP} from '@/lib/animations/gsap';
-import {usePreloaderDone} from '@/lib/hooks/use-preloader-done';
+import {
+  useRef,
+  type ComponentPropsWithoutRef,
+  type FC,
+  type ReactNode,
+} from "react"
+import { motion, MotionValue, useScroll, useTransform } from "motion/react"
 
-interface TextRevealProps {
-  children: React.ReactNode;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div';
-  type?: 'chars' | 'words' | 'lines';
-  stagger?: number;
-  className?: string;
-  style?: React.CSSProperties;
+import { cn } from "@/lib/utils"
+
+export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
+  children: string
+  italicWords?: string[]
 }
 
-export function TextReveal({
+export const TextReveal: FC<TextRevealProps> = ({
   children,
-  as: Tag = 'div',
-  type = 'words',
-  stagger = 0.03,
   className,
-  style,
-}: TextRevealProps) {
-  const ref = useRef<HTMLElement>(null);
-  const preloaderDone = usePreloaderDone();
+  italicWords = [],
+}) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 85%", "end 20%"],
+  })
 
-  useGSAP(
-    () => {
-      if (!ref.current || !preloaderDone) return;
+  if (typeof children !== "string") {
+    throw new Error("TextReveal: children must be a string")
+  }
 
-      const split = SplitText.create(ref.current, {
-        type,
-        ...(type === 'lines' ? {linesClass: 'overflow-hidden'} : {}),
-      });
-
-      const targets =
-        type === 'chars'
-          ? split.chars
-          : type === 'words'
-            ? split.words
-            : split.lines;
-
-      gsap.from(targets, {
-        y: '100%',
-        clipPath: 'inset(100% 0 0 0)',
-        opacity: 0,
-        duration: 0.8,
-        stagger,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: ref.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
-      });
-    },
-    {scope: ref, dependencies: [preloaderDone]},
-  );
-
-  // Convert \n in string children to <br /> elements
-  const rendered =
-    typeof children === 'string' && children.includes('\n')
-      ? children.split('\n').map((line, i, arr) => (
-          <span key={i}>
-            {line}
-            {i < arr.length - 1 && <br />}
-          </span>
-        ))
-      : children;
+  const words = children.split(" ")
+  const italicWordSet = new Set(italicWords.map((word) => word.toLowerCase()))
 
   return (
-    <Tag ref={ref as React.Ref<never>} className={className} style={style}>
-      {rendered}
-    </Tag>
-  );
+    <div ref={sectionRef} className={cn("relative z-0", className)}>
+      <span className="flex flex-wrap">
+        {words.map((word, i) => {
+          const start = i / words.length
+          const end = start + 1 / words.length
+          const normalizedWord = word.toLowerCase().replace(/[^a-z0-9]/gi, "")
+          const isItalic = italicWordSet.has(normalizedWord)
+          return (
+            <Word
+              key={i}
+              progress={scrollYProgress}
+              range={[start, end]}
+              className={isItalic ? "italic" : undefined}
+            >
+              {word}
+            </Word>
+          )
+        })}
+      </span>
+    </div>
+  )
+}
+
+interface WordProps {
+  children: ReactNode
+  progress: MotionValue<number>
+  range: [number, number]
+  className?: string
+}
+
+const Word: FC<WordProps> = ({ children, progress, range, className }) => {
+  const opacity = useTransform(progress, range, [0, 1])
+  return (
+    <span className="xl:lg-3 relative mx-1 lg:mx-1.5">
+      <span className={cn("absolute opacity-30", className)}>{children}</span>
+      <motion.span
+        style={{ opacity: opacity }}
+        className={cn("text-inherit", className)}
+      >
+        {children}
+      </motion.span>
+    </span>
+  )
 }
