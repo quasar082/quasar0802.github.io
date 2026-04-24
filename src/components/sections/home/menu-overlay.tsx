@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { MenuItem } from '@/lib/content/home';
 
 type MenuOverlayProps = {
@@ -13,6 +14,7 @@ const previewClassByHref: Record<string, string> = {
   '#projects': 'from-[#cfc7bb] via-[#a6b7a4] to-[#5c6c63]',
   '#achievements': 'from-[#f7f7f7] via-[#d9d9d9] to-[#b7b7b7]',
   '#contact': 'from-[#e9e9e9] via-[#cfcfcf] to-[#0d0d0d]',
+  '/blog': 'from-[#111111] via-[#3a3a3a] to-[#d9d9d9]',
 };
 
 export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuOverlayProps) {
@@ -35,7 +37,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
 
             return (
               <li key={item.label}>
-                <a
+                <Link
                   href={item.href}
                   className="group grid gap-4 text-white no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                   onClick={onClose}
@@ -49,7 +51,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
                     </span>
                   </span>
                   <span className={`block aspect-[16/8] w-full rounded-lg bg-gradient-to-br ${previewClass}`} aria-hidden="true" />
-                </a>
+                </Link>
               </li>
             );
           })}

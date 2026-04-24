@@ -1,0 +1,20 @@
+---
+title: Designing AI interfaces that stay usable under pressure
+summary: A practical look at how to keep AI-heavy products understandable, calm, and trustworthy when workflows become dense.
+date: 2026-04-18
+tags:
+  - UX
+  - AI Systems
+featured: true
+readTime: 6 min read
+order: 1
+---
+AI interfaces usually look impressive in demos and fall apart in real use once the user has to compare outputs, recover from ambiguity, and keep context in view.
+
+The first priority is not visual novelty. It is structural calm. Users need to know what the system is doing, what changed, and what to do next.
+
+That means reducing surprise in three places: response timing, state transitions, and action affordances. If any of those become unclear, trust drops quickly.
+
+When I design AI product surfaces, I look for layouts that preserve orientation even when outputs are long, asynchronous, or partially wrong. Fixed anchors, predictable navigation, and clear hierarchy matter more than decorative motion.
+
+A good AI interface does not merely look modern. It helps the user recover instantly when the model behaves imperfectly.

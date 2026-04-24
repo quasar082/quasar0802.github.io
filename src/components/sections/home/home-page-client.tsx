@@ -21,7 +21,7 @@ export function HomePageClient({ content }: HomePageClientProps) {
 
   useEffect(() => {
     const hero = document.getElementById('home');
-    const sectionIds = content.menuItems.map((item) => item.href.slice(1));
+    const sectionIds = content.menuItems.filter((item) => item.href.startsWith('#')).map((item) => item.href.slice(1));
 
     const updateScrollState = () => {
       setIsPastHero(hero ? hero.getBoundingClientRect().bottom <= 72 : false);
