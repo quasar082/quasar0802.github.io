@@ -23,7 +23,7 @@ export function BlogShell({ children }: BlogShellProps) {
 
   return (
     <main className="min-h-dvh bg-[#f7f7f3] text-[#111111]">
-      <SiteHeader isMenuOpen={isMenuOpen} isPastHero onOpenMenu={() => setIsMenuOpen((open) => !open)} sticky={false} homeHref="/" />
+      <SiteHeader isMenuOpen={isMenuOpen} isPastHero onOpenMenu={() => setIsMenuOpen((open) => !open)} sticky homeHref="/" />
       {children}
       <BlogMenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} items={menuItems} />
     </main>
