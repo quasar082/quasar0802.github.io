@@ -70,7 +70,7 @@ export function HomePageClient({ content }: HomePageClientProps) {
 
   return (
     <main className="h-dvh overflow-x-clip bg-[#8f9a94]">
-      <SiteHeader isMenuOpen={isMenuOpen} isPastHero={isPastHero} onOpenMenu={() => setIsMenuOpen(true)} sticky />
+      <SiteHeader isMenuOpen={isMenuOpen} isPastHero={isPastHero} onOpenMenu={() => setIsMenuOpen((open) => !open)} sticky />
       <HeroSection heroImagePath={content.heroImagePath} services={content.services} socialLinks={content.socialLinks} />
       <AboutSection />
       <ProjectsSection projects={content.projects} />

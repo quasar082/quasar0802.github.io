@@ -41,11 +41,12 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
                   onClick={onClose}
                 >
                   <span className="inline-flex min-h-8 items-center gap-3 text-sm font-semibold uppercase tracking-[0.04em] md:text-base">
-                    <span
-                      className={`h-3 w-3 rounded-full transition-opacity ${isActive ? 'bg-[#a7d7ad] opacity-100' : 'bg-[#a7d7ad] opacity-0 group-hover:opacity-60'}`}
-                      aria-hidden="true"
-                    />
-                    {item.label}
+                    <span className="flex h-3 w-3 items-center justify-center" aria-hidden="true">
+                      <span className={`h-2 w-2 rounded-full bg-[#a7d7ad] transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                    </span>
+                    <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100">
+                      {item.label}
+                    </span>
                   </span>
                   <span className={`block aspect-[16/8] w-full rounded-lg bg-gradient-to-br ${previewClass}`} aria-hidden="true" />
                 </a>
