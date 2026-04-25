@@ -44,18 +44,13 @@ export function SiteHeader({ isMenuOpen, isPastHero, onOpenMenu, sticky = false,
           >
             <span className="relative h-4 w-7" aria-hidden="true">
               <span
-                className={`absolute left-1/2 top-0 h-0.5 w-7 -translate-x-1/2 rounded-full transition-[transform,opacity,background-color,top] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
-                  isMenuOpen ? 'top-1/2 -translate-y-1/2 rotate-45' : ''
+                className={`absolute left-0 top-0.5 h-0.5 w-7 origin-center rounded-full transition-[transform,background-color,top,width,right] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
+                  isMenuOpen ? 'top-1/2 rotate-45' : ''
                 }`}
               />
               <span
-                className={`absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full transition-[transform,opacity,background-color] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
-                  isMenuOpen ? 'opacity-0' : 'opacity-100'
-                }`}
-              />
-              <span
-                className={`absolute left-1/2 bottom-0 h-0.5 w-[75%] -translate-x-1/2 rounded-full transition-[opacity,background-color] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
-                  isMenuOpen ? 'opacity-0' : 'opacity-100'
+                className={`absolute right-0 top-[calc(100%-3px)] h-0.5 w-[75%] origin-center rounded-full transition-[transform,background-color,top,width,right] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
+                  isMenuOpen ? 'top-1/2 right-1/2 w-7 translate-x-1/2 -rotate-45' : ''
                 }`}
               />
             </span>
