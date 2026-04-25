@@ -36,23 +36,25 @@ export function SiteHeader({ isMenuOpen, isPastHero, onOpenMenu, sticky = false,
         {hasMenuToggle ? (
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center bg-transparent p-0 transition active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current motion-reduce:transition-none motion-reduce:transform-none"
+            className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
             aria-expanded={isMenuOpen}
             aria-controls="hero-menu-overlay"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={onOpenMenu}
           >
             <span className="relative h-4 w-7" aria-hidden="true">
-              <span
-                className={`absolute left-0 top-0.5 h-0.5 w-7 origin-center rounded-full transition-[transform,background-color,top,left,width] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
-                  isMenuOpen ? 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45' : ''
-                }`}
-              />
-              <span
-                className={`absolute right-0 bottom-0.5 h-0.5 w-[75%] origin-center rounded-full transition-[transform,background-color,bottom,left,right,width] duration-300 ease-out motion-reduce:transition-none ${barClass} ${
-                  isMenuOpen ? 'bottom-auto left-1/2 right-auto top-1/2 w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45' : ''
-                }`}
-              />
+              {isMenuOpen ? (
+                <>
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 origin-center rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 origin-center rounded-full ${barClass}`} />
+                </>
+              ) : (
+                <>
+                  <span className={`absolute left-1/2 top-0.5 h-0.5 w-5 -translate-x-1/2 rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 bottom-0.5 h-0.5 w-5 -translate-x-1/2 rounded-full ${barClass}`} />
+                </>
+              )}
             </span>
           </button>
         ) : null}
