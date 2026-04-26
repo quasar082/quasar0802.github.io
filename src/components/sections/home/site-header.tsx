@@ -42,17 +42,17 @@ export function SiteHeader({ isMenuOpen, isPastHero, onOpenMenu, sticky = false,
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={onOpenMenu}
           >
-            <span className="relative h-4 w-7" aria-hidden="true">
+            <span className="relative h-5 w-8" aria-hidden="true">
               {isMenuOpen ? (
                 <>
-                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 origin-center rounded-full ${barClass}`} />
-                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 origin-center rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-8 -translate-x-1/2 -translate-y-1/2 rotate-45 origin-center rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-8 -translate-x-1/2 -translate-y-1/2 -rotate-45 origin-center rounded-full ${barClass}`} />
                 </>
               ) : (
                 <>
-                  <span className={`absolute left-1/2 top-0.5 h-0.5 w-5 -translate-x-1/2 rounded-full ${barClass}`} />
-                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full ${barClass}`} />
-                  <span className={`absolute left-1/2 bottom-0.5 h-0.5 w-5 -translate-x-1/2 rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-0 h-0.5 w-6 -translate-x-1/2 rounded-full ${barClass}`} />
+                  <span className={`absolute left-1/2 top-1/2 h-0.5 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full ${barClass}`} />
+                  <span className={`absolute left-[58%] bottom-0 h-0.5 w-5 -translate-x-1/2 rounded-full ${barClass}`} />
                 </>
               )}
             </span>
