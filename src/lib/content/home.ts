@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 export type ServiceItem = {
   label: string;
   href: string;
+  previewImageUrl?: string;
   order: number;
 };
 
@@ -26,6 +27,7 @@ export type AchievementItem = {
   date: string;
   role: string;
   details: string;
+  previewImageUrl?: string;
   order: number;
 };
 

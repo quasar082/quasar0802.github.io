@@ -1,3 +1,4 @@
+import { CursorHoverImage } from '@/components/ui/cursor-hover-image';
 import type { ContactSocial, ServiceItem } from '@/lib/content/home';
 
 function GithubMark() {
@@ -29,6 +30,13 @@ function LinkedInMark() {
     </svg>
   );
 }
+
+const serviceHoverImageMap: Record<string, string> = {
+  'Architect System': '/images/hero.jpg',
+  'Harness AI': '/images/about.jpg',
+  'Automate Pipeline': '/images/projects.jpg',
+  'Agent Orchestration': '/images/contact.jpg',
+};
 
 function getSocialIcon(label: string) {
   if (label === 'Github') {
@@ -62,12 +70,14 @@ export function HeroSection({ heroImagePath, services, contactSocials }: HeroSec
             <ul className="m-0 grid list-none gap-1 p-0 md:gap-2">
               {services.map((service) => (
                 <li key={service.label}>
-                  <a
-                    href={service.href}
-                    className="inline-flex min-h-11 items-center text-base leading-snug text-white/90 no-underline 2xl:text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  <CursorHoverImage
+                    src={serviceHoverImageMap[service.label] ?? '/images/hero.jpg'}
+                    width={320}
+                    height={210}
+                    className="inline-flex min-h-11 items-center text-base leading-snug text-white/90 2xl:text-lg"
                   >
                     ↳ {service.label}
-                  </a>
+                  </CursorHoverImage>
                 </li>
               ))}
             </ul>

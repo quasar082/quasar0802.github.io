@@ -1,7 +1,12 @@
+import { CursorHoverImage } from '@/components/ui/cursor-hover-image';
 import type { AchievementItem } from '@/lib/content/home';
 
 type AchievementSectionProps = {
   achievements: AchievementItem[];
+};
+
+const achievementPreviewMap: Record<string, string> = {
+  'AI Engineer': '/images/about.jpg',
 };
 
 export function AchievementSection({ achievements }: AchievementSectionProps) {
@@ -12,14 +17,19 @@ export function AchievementSection({ achievements }: AchievementSectionProps) {
 
         <div className="mt-12 divide-y divide-black/10 border-y border-black/10">
           {achievements.map((achievement) => (
-            <article
+            <CursorHoverImage
               key={`${achievement.date}-${achievement.role}`}
-              className="grid grid-cols-1 gap-4 py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-8"
+              src={achievementPreviewMap[achievement.role] ?? '/images/projects.jpg'}
+              width={320}
+              height={210}
+              className="block"
             >
-              <p className="m-0 text-base font-medium tracking-wide text-black/80 md:text-lg">{achievement.date}</p>
-              <h3 className="m-0 text-xl font-medium leading-tight text-black md:text-2xl">{achievement.role}</h3>
-              <p className="m-0 text-sm leading-relaxed text-black/45 md:text-base">{achievement.details}</p>
-            </article>
+              <article className="grid grid-cols-1 gap-4 py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-8">
+                <p className="m-0 text-base font-medium tracking-wide text-black/80 md:text-lg">{achievement.date}</p>
+                <h3 className="m-0 text-xl font-medium leading-tight text-black md:text-2xl">{achievement.role}</h3>
+                <p className="m-0 text-sm leading-relaxed text-black/45 md:text-base">{achievement.details}</p>
+              </article>
+            </CursorHoverImage>
           ))}
         </div>
       </div>

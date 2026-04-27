@@ -1,5 +1,6 @@
 'use client';
 
+import { CursorHoverCard } from '@/components/ui/cursor-hover-card';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import type { MenuItem } from '@/lib/content/home';
@@ -118,21 +119,27 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
 
             return (
               <li key={item.label}>
-                <Link
-                  href={item.href}
-                  className="group grid gap-4 text-white no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-                  onClick={onClose}
+                <CursorHoverCard
+                  label={item.href === '/blog' ? 'Visit blog' : 'Go to'}
+                  iconVariant={item.href === '/blog' ? 'arrow-up-right' : 'arrow-right'}
+                  className="block"
                 >
-                  <span className="inline-flex min-h-8 items-center gap-3 text-sm font-semibold uppercase tracking-[0.04em] md:text-base">
-                    <span className="flex h-3 w-3 items-center justify-center" aria-hidden="true">
-                      <span className={`h-2 w-2 rounded-full bg-[#a7d7ad] transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                  <Link
+                    href={item.href}
+                    className="group grid gap-4 text-white no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                    onClick={onClose}
+                  >
+                    <span className="inline-flex min-h-8 items-center gap-3 text-sm font-semibold uppercase tracking-[0.04em] md:text-base">
+                      <span className="flex h-3 w-3 items-center justify-center" aria-hidden="true">
+                        <span className={`h-2 w-2 rounded-full bg-[#a7d7ad] transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                      </span>
+                      <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100">
+                        {item.label}
+                      </span>
                     </span>
-                    <span className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100">
-                      {item.label}
-                    </span>
-                  </span>
-                  <span className={`block aspect-[16/8] w-full rounded-lg bg-gradient-to-br ${previewClass}`} aria-hidden="true" />
-                </Link>
+                    <span className={`block aspect-[16/8] w-full rounded-lg bg-gradient-to-br ${previewClass}`} aria-hidden="true" />
+                  </Link>
+                </CursorHoverCard>
               </li>
             );
           })}
