@@ -40,7 +40,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       return;
     }
 
-    const EDGE_BUFFER = 0.35;
+    const EDGE_BUFFER = 0.3;
 
     let targetScrollTop = list.scrollTop;
     let currentScrollTop = list.scrollTop;
