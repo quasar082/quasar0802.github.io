@@ -53,7 +53,9 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
     const step = () => {
       const delta = targetScrollTop - currentScrollTop;
       const distance = Math.abs(delta);
-      const easeFactor = 0.05 + Math.min(0.1, distance / 2200);
+      const normalizedDistance = Math.min(1, distance / 1800);
+      const easeInOut = Math.sin(normalizedDistance * Math.PI);
+      const easeFactor = 0.012 + easeInOut * 0.045;
 
       currentScrollTop += delta * easeFactor;
 
