@@ -65,7 +65,7 @@ export function HeroSection({ heroImagePath, services, socialLinks }: HeroSectio
                     >
                       {social.label === 'Github' ? <GithubMark /> : social.symbol}
                     </span>
-                    <span className="relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100 lg:after:-right-1 lg:after:bottom-auto lg:after:left-auto lg:after:top-0 lg:after:h-full lg:after:w-px lg:after:origin-top lg:after:scale-x-100 lg:after:scale-y-0 group-hover:lg:after:scale-y-100 group-focus-visible:lg:after:scale-y-100">
+                    <span className="relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100 lg:after:-bottom-2 lg:after:left-1/2 lg:after:w-8 lg:after:-translate-x-1/2">
                       {social.label}
                     </span>
                   </a>
