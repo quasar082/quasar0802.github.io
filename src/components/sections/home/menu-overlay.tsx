@@ -39,22 +39,32 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
     }
 
     const DEAD_ZONE = 0.08;
-    const MAX_SPEED = 3;
+    const BOOST_SPEED = 3;
+    const CRUISE_SPEED = 1.6;
+    const DECAY = 0.08;
 
-    let speed = 0;
+    let targetSpeed = 0;
+    let currentSpeed = 0;
     let rafId = 0;
 
     const step = () => {
-      if (speed !== 0) {
-        list.scrollTop += speed;
+      currentSpeed += (targetSpeed - currentSpeed) * DECAY;
+
+      if (Math.abs(currentSpeed) < 0.01) {
+        currentSpeed = 0;
       }
+
+      if (currentSpeed !== 0) {
+        list.scrollTop += currentSpeed;
+      }
+
       rafId = window.requestAnimationFrame(step);
     };
 
     const onPointerMove = (event: PointerEvent) => {
       const rect = list.getBoundingClientRect();
       if (rect.height <= 0) {
-        speed = 0;
+        targetSpeed = 0;
         return;
       }
 
@@ -62,15 +72,22 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       const distanceFromCenter = relativeY - 0.5;
 
       if (Math.abs(distanceFromCenter) <= DEAD_ZONE) {
-        speed = 0;
+        targetSpeed = 0;
         return;
       }
 
-      speed = distanceFromCenter > 0 ? MAX_SPEED : -MAX_SPEED;
+      const nextDirection = distanceFromCenter > 0 ? 1 : -1;
+      const previousDirection = Math.sign(targetSpeed);
+
+      if (nextDirection !== previousDirection) {
+        currentSpeed = nextDirection * BOOST_SPEED;
+      }
+
+      targetSpeed = nextDirection * CRUISE_SPEED;
     };
 
     const onPointerLeave = () => {
-      speed = 0;
+      targetSpeed = 0;
     };
 
     list.addEventListener('pointermove', onPointerMove);
