@@ -98,7 +98,7 @@ export function BlogPageClient({ latestPosts, posts, categories }: BlogPageClien
 
           <div
             ref={railRef}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {latestPosts.map((post) => (
               <Link
