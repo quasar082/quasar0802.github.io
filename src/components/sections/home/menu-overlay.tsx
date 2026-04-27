@@ -38,56 +38,36 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       return;
     }
 
-    const DEAD_ZONE = 0.08;
-    const BOOST_SPEED = 6;
-    const CRUISE_SPEED = 3.2;
-    const DECAY = 0.08;
+    const EASE_FACTOR = 0.22;
 
-    let targetSpeed = 0;
-    let currentSpeed = 0;
+    let targetScrollTop = 0;
+    let currentScrollTop = list.scrollTop;
     let rafId = 0;
 
     const step = () => {
-      currentSpeed += (targetSpeed - currentSpeed) * DECAY;
+      currentScrollTop += (targetScrollTop - currentScrollTop) * EASE_FACTOR;
 
-      if (Math.abs(currentSpeed) < 0.01) {
-        currentSpeed = 0;
+      if (Math.abs(targetScrollTop - currentScrollTop) < 0.5) {
+        currentScrollTop = targetScrollTop;
       }
 
-      if (currentSpeed !== 0) {
-        list.scrollTop += currentSpeed;
-      }
-
+      list.scrollTop = currentScrollTop;
       rafId = window.requestAnimationFrame(step);
     };
 
     const onPointerMove = (event: PointerEvent) => {
       const rect = list.getBoundingClientRect();
       if (rect.height <= 0) {
-        targetSpeed = 0;
         return;
       }
 
-      const relativeY = (event.clientY - rect.top) / rect.height;
-      const distanceFromCenter = relativeY - 0.5;
-
-      if (Math.abs(distanceFromCenter) <= DEAD_ZONE) {
-        targetSpeed = 0;
-        return;
-      }
-
-      const nextDirection = distanceFromCenter > 0 ? 1 : -1;
-      const previousDirection = Math.sign(targetSpeed);
-
-      if (nextDirection !== previousDirection) {
-        currentSpeed = nextDirection * BOOST_SPEED;
-      }
-
-      targetSpeed = nextDirection * CRUISE_SPEED;
+      const normalizedY = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+      const maxScrollTop = Math.max(0, list.scrollHeight - list.clientHeight);
+      targetScrollTop = normalizedY * maxScrollTop;
     };
 
     const onPointerLeave = () => {
-      targetSpeed = 0;
+      targetScrollTop = list.scrollTop;
     };
 
     list.addEventListener('pointermove', onPointerMove);
