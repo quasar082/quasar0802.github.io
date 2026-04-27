@@ -44,7 +44,7 @@ export function BlogMenuOverlay({ isOpen, onClose, items, activeHref }: BlogMenu
       return;
     }
 
-    const EDGE_BUFFER = 0.4;
+    const EDGE_BUFFER = 0.35;
 
     let targetScrollTop = list.scrollTop;
     let currentScrollTop = list.scrollTop;

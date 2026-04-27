@@ -40,7 +40,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       return;
     }
 
-    const EDGE_BUFFER = 0.4;
+    const EDGE_BUFFER = 0.35;
 
     let targetScrollTop = list.scrollTop;
     let currentScrollTop = list.scrollTop;
@@ -108,7 +108,7 @@ export function MenuOverlay({ menuItems, activeSection, isOpen, onClose }: MenuO
       aria-modal={isOpen ? 'true' : undefined}
       aria-label="Main menu"
     >
-      <nav aria-label="Main navigation" className="container mx-auto h-full px-4 pb-8 pt-28 sm:px-6 lg:px-8">
+      <nav aria-label="Main navigation" className="container mx-auto h-full px-4 pb-8 pt-18 sm:px-6 lg:px-8">
         <ul ref={listRef} data-lenis-prevent className="m-0 grid h-full list-none gap-5 overflow-y-auto p-0 pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6">
           {menuItems.map((item) => {
             const isActive = item.href === activeSection;
