@@ -23,7 +23,7 @@ export function SiteHeader({ isMenuOpen, isPastHero, onOpenMenu, sticky = false,
       <div className="container mx-auto flex items-center justify-between">
         <Link
           href={homeHref}
-          className="inline-flex min-h-11 items-center gap-2.5 text-3xl font-semibold leading-none no-underline transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-4xl"
+          className="inline-flex min-h-11 items-center gap-2.5 text-2xl xl:text-3xl font-semibold leading-none no-underline transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current md:text-4xl"
           aria-label="Quasar home"
         >
           <span className="relative inline-block h-5 w-8" aria-hidden="true">
@@ -42,7 +42,7 @@ export function SiteHeader({ isMenuOpen, isPastHero, onOpenMenu, sticky = false,
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={onOpenMenu}
           >
-            <span className="relative h-5 w-8" aria-hidden="true">
+            <span className="relative xl:h-5 xl:w-8 h-4 w-7" aria-hidden="true">
               {isMenuOpen ? (
                 <>
                   <span className={`absolute left-1/2 top-1/2 h-0.5 w-8 -translate-x-1/2 -translate-y-1/2 rotate-45 origin-center rounded-full ${barClass}`} />

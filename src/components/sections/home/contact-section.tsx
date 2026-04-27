@@ -34,7 +34,7 @@ export function ContactSection({ contactSocials }: ContactSectionProps) {
                     <li key={social.label}>
                       <a
                         href={social.href}
-                        className="relative inline-block pb-1 text-base md:text-lg lg:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+                        className="relative inline-block pb-1 text-base md:text-lg xl:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
                       >
                         {social.label}
                       </a>
@@ -48,7 +48,7 @@ export function ContactSection({ contactSocials }: ContactSectionProps) {
                   <p className="m-0 text-xs lg:text-sm font-bold uppercase tracking-[0.08em] text-black">Contact</p>
                   <a
                     href="tel:0376316144"
-                    className="relative mt-4 inline-block pb-1 text-base md:text-lg lg:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+                    className="relative mt-4 inline-block pb-1 text-base md:text-lg xl:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
                   >
                     0376316144
                   </a>
@@ -56,7 +56,7 @@ export function ContactSection({ contactSocials }: ContactSectionProps) {
 
                 <div>
                   <p className="m-0 text-xs lg:text-sm font-bold uppercase tracking-[0.08em] text-black">Address</p>
-                  <p className="relative mt-4 inline-block pb-1 text-base md:text-lg lg:text-2xl leading-tight text-black/55 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:before:translate-x-[calc(100%-2rem)]">
+                  <p className="relative mt-4 inline-block pb-1 text-base md:text-lg xl:text-2xl leading-tight text-black/55 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:before:translate-x-[calc(100%-2rem)]">
                     Thu Duc, HCM
                   </p>
                 </div>
@@ -66,7 +66,7 @@ export function ContactSection({ contactSocials }: ContactSectionProps) {
                 <p className="m-0 text-xs lg:text-sm font-bold uppercase tracking-[0.08em] text-black">Email</p>
                 <a
                   href="mailto:haminhquan12c7@gmail.com"
-                  className="relative mt-4 inline-block break-all pb-1  text-base md:text-lg lg:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+                  className="relative mt-4 inline-block break-all pb-1  text-base md:text-lg xl:text-2xl leading-tight text-black/55 no-underline transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black/35 before:absolute before:bottom-0 before:left-0 before:h-px before:w-8 before:bg-[#e9e9e9] before:transition-transform before:duration-500 hover:text-black/80 hover:before:translate-x-[calc(100%-2rem)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
                 >
                   haminhquan12c7@gmail.com
                 </a>
