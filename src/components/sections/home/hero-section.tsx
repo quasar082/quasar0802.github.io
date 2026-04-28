@@ -105,7 +105,7 @@ export function HeroSection({ heroImagePath, services, contactSocials }: HeroSec
                   >
                     <span
                       aria-hidden="true"
-                      className={`text-base font-semibold leading-none lg:text-3xl ${social.label === 'Github' ? 'lg:rotate-90' : ''}`}
+                      className="text-base font-semibold leading-none lg:text-3xl lg:rotate-90"
                     >
                       {getSocialIcon(social.label)}
                     </span>

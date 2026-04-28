@@ -77,7 +77,8 @@ export function HomePageClient({ content }: HomePageClientProps) {
       const scrollingUp = currentScrollY < lastScrollY;
       const nearTop = currentScrollY <= 16;
 
-      setIsHeaderVisible(nearTop || scrollingUp || isMenuOpen);
+      const inContactSection = activeSection === '#contact';
+      setIsHeaderVisible(nearTop || scrollingUp || isMenuOpen || inContactSection);
       lastScrollY = currentScrollY;
     };
 
@@ -87,7 +88,7 @@ export function HomePageClient({ content }: HomePageClientProps) {
     return () => {
       window.removeEventListener('scroll', updateHeaderVisibility);
     };
-  }, [isMenuOpen]);
+  }, [activeSection, isMenuOpen]);
 
   return (
     <main className="h-dvh overflow-x-clip bg-[#8f9a94]">
