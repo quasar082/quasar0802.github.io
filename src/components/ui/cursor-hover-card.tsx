@@ -116,7 +116,7 @@ export function CursorHoverCard({
       {children}
       {enabled ? (
         <span
-          className={`cursor-pointer fixed left-0 top-0 z-[70] inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/85 py-[1.1rem] pl-8 pr-6 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-2xl transition-opacity duration-150 ${
+          className={`pointer-events-none fixed left-0 top-0 z-[70] inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/85 py-[1.1rem] pl-8 pr-6 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-2xl transition-opacity duration-150 ${
             visible ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ transform: `translate3d(calc(${position.x}px - 50%), calc(${position.y}px - 50%), 0)` }}
