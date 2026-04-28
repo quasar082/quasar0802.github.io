@@ -17,8 +17,8 @@ export function CursorHoverCard({
   children,
   label,
   iconVariant = 'arrow-right',
-  offsetX = 18,
-  offsetY = 18,
+  offsetX = 0,
+  offsetY = 0,
   easing = 0.16,
   className,
 }: CursorHoverCardProps) {
@@ -116,10 +116,10 @@ export function CursorHoverCard({
       {children}
       {enabled ? (
         <span
-          className={`pointer-events-none fixed left-0 top-0 z-[70] inline-flex items-center gap-2 rounded-2xl border border-white/35 bg-black/85 py-[1.1rem] px-11 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-2xl transition-opacity duration-150 ${
+          className={`pointer-events-none fixed left-0 top-0 z-[70] inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/85 py-[1.1rem] pl-8 pr-6 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-2xl transition-opacity duration-150 ${
             visible ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}
+          style={{ transform: `translate3d(calc(${position.x}px - 50%), calc(${position.y}px - 50%), 0)` }}
           aria-hidden="true"
         >
           <span>{label}</span>

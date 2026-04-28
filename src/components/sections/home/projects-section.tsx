@@ -15,20 +15,22 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         <div className="mt-12 grid grid-cols-1 gap-20 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <CursorHoverCard key={project.name} label="View now" iconVariant="arrow-up-right" className="relative block">
-              <article className="relative">
-                <span className="pointer-events-none absolute -right-2 -top-4 z-10 text-5xl font-medium leading-none tracking-tight text-gray-500/75 md:-right-3 md:-top-6 md:text-6xl">#{index + 1}</span>
-                <div
-                  className={`aspect-[4/3] w-full bg-cover bg-center ${project.imageUrl ? '' : project.placeholderClass}`}
-                  style={project.imageUrl ? { backgroundImage: `url('${project.imageUrl}')` } : undefined}
-                  aria-hidden="true"
-                />
-                <a
-                  href={project.href}
-                  className="mt-4 inline-block text-base tracking-wide text-black no-underline transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-                >
-                  {project.name}
-                </a>
-              </article>
+              <a
+                href={project.href}
+                className="group block no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              >
+                <article className="relative">
+                  <span className="pointer-events-none absolute -right-2 -top-4 z-10 text-5xl font-medium leading-none tracking-tight text-gray-500/75 md:-right-3 md:-top-6 md:text-6xl">#{index + 1}</span>
+                  <div
+                    className={`aspect-[4/3] w-full bg-cover bg-center ${project.imageUrl ? '' : project.placeholderClass}`}
+                    style={project.imageUrl ? { backgroundImage: `url('${project.imageUrl}')` } : undefined}
+                    aria-hidden="true"
+                  />
+                  <span className="mt-4 inline-block text-base tracking-wide text-black transition-opacity group-hover:opacity-70">
+                    {project.name}
+                  </span>
+                </article>
+              </a>
             </CursorHoverCard>
           ))}
         </div>
