@@ -23,7 +23,7 @@ export type ProjectItem = {
   order: number;
 };
 
-export type AchievementItem = {
+export type ExperienceItem = {
   date: string;
   role: string;
   details: string;
@@ -42,7 +42,7 @@ export type HomeContent = {
   services: ServiceItem[];
   menuItems: MenuItem[];
   projects: ProjectItem[];
-  achievements: AchievementItem[];
+  experiences: ExperienceItem[];
   contactSocials: ContactSocial[];
 };
 
@@ -81,7 +81,7 @@ export function getHomeContent(): HomeContent {
     services: readCollection<ServiceItem>('services'),
     menuItems: readCollection<MenuItem>('menu-items'),
     projects: readCollection<ProjectItem>('projects'),
-    achievements: readCollection<AchievementItem>('achievements'),
+    experiences: readCollection<ExperienceItem>('achievements'),
     contactSocials: readCollection<ContactSocial>('contact-socials'),
   };
 }

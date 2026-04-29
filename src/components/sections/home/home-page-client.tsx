@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { HomeContent } from '@/lib/content/home';
 import { AboutSection } from './about-section';
-import { AchievementSection } from './achievement-section';
+import { ExperienceSection } from './experience-section';
 import { ContactSection } from './contact-section';
 import { HeroSection } from './hero-section';
 import { MenuOverlay } from './menu-overlay';
@@ -96,7 +96,7 @@ export function HomePageClient({ content }: HomePageClientProps) {
       <HeroSection heroImagePath={content.heroImagePath} services={content.services} contactSocials={content.contactSocials} />
       <AboutSection />
       <ProjectsSection projects={content.projects} />
-      <AchievementSection achievements={content.achievements} />
+      <ExperienceSection experiences={content.experiences} />
       <ContactSection contactSocials={content.contactSocials} />
       <MenuOverlay menuItems={content.menuItems} activeSection={activeSection} isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </main>

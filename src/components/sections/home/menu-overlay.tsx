@@ -16,7 +16,7 @@ const previewClassByHref: Record<string, string> = {
   '#home': 'from-[#222b27] via-[#8f9a94] to-[#d8d2c4]',
   '#about': 'from-white via-[#f1f1f1] to-[#d8d8d8]',
   '#projects': 'from-[#cfc7bb] via-[#a6b7a4] to-[#5c6c63]',
-  '#achievements': 'from-[#f7f7f7] via-[#d9d9d9] to-[#b7b7b7]',
+  '#experience': 'from-[#f7f7f7] via-[#d9d9d9] to-[#b7b7b7]',
   '#contact': 'from-[#e9e9e9] via-[#cfcfcf] to-[#0d0d0d]',
   '/blog': 'from-[#111111] via-[#3a3a3a] to-[#d9d9d9]',
 };

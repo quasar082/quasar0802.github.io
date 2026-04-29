@@ -13,7 +13,7 @@ const blogMenuItems = [
   { label: 'Hero', href: '/#home' },
   { label: 'About', href: '/#about' },
   { label: 'Project', href: '/#projects' },
-  { label: 'Achievements', href: '/#achievements' },
+  { label: 'Experience', href: '/#experience' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact' },
 ];
