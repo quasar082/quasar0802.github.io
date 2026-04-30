@@ -19,7 +19,7 @@ export type BlogPost = BlogPostFrontmatter & {
   content: string;
 };
 
-const blogContentDirectory = path.join(process.cwd(), 'src/content/blog');
+const blogContentDirectory = path.join(process.cwd(), 'content/blog');
 
 function normalizeDate(rawDate: unknown) {
   if (typeof rawDate === 'object' && rawDate !== null && 'toISOString' in rawDate) {

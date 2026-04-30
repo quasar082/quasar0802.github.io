@@ -50,7 +50,7 @@ type OrderedItem = {
   order: number;
 };
 
-const homeContentDirectory = path.join(process.cwd(), 'src/content/home');
+const homeContentDirectory = path.join(process.cwd(), 'content/home');
 
 function readMarkdownFrontmatter<T>(filePath: string): T {
   const source = fs.readFileSync(filePath, 'utf8');
@@ -81,7 +81,7 @@ export function getHomeContent(): HomeContent {
     services: readCollection<ServiceItem>('services'),
     menuItems: readCollection<MenuItem>('menu-items'),
     projects: readCollection<ProjectItem>('projects'),
-    experiences: readCollection<ExperienceItem>('achievements'),
+    experiences: readCollection<ExperienceItem>('experiences'),
     contactSocials: readCollection<ContactSocial>('contact-socials'),
   };
 }
