@@ -53,7 +53,7 @@ body {
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--muted-foreground) var(--muted);
+  scrollbar-color: color-mix(in oklch, var(--muted-foreground) 70%, var(--border)) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -62,13 +62,13 @@ html {
 }
 
 *::-webkit-scrollbar-track {
-  background: color-mix(in oklch, var(--muted) 92%, var(--background));
+  background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
   background: color-mix(in oklch, var(--muted-foreground) 70%, var(--border));
   border-radius: 999px;
-  border: 2px solid color-mix(in oklch, var(--muted) 92%, var(--background));
+  border: 2px solid transparent;
 }
 
 *::-webkit-scrollbar-thumb:hover {
