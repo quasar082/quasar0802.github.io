@@ -6,6 +6,7 @@ import { AboutSection } from './about-section';
 import { ExperienceSection } from './experience-section';
 import { ContactSection } from './contact-section';
 import { HeroSection } from './hero-section';
+import { HomePreloader } from './home-preloader';
 import { MenuOverlay } from './menu-overlay';
 import { ProjectsSection } from './projects-section';
 import { SiteHeader } from './site-header';
@@ -96,6 +97,7 @@ export function HomePageClient({ content }: HomePageClientProps) {
 
   return (
     <main className="h-dvh overflow-x-clip bg-[#8f9a94]">
+      <HomePreloader heroImagePath={content.heroImagePath} />
       <SiteHeader isMenuOpen={isMenuOpen} isPastHero={isPastHero} isVisible={isHeaderVisible} onOpenMenu={() => setIsMenuOpen((open) => !open)} sticky />
       <HeroSection heroImagePath={content.heroImagePath} services={content.services} contactSocials={content.contactSocials} />
       <AboutSection />
