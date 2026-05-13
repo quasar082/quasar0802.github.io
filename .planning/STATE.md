@@ -116,9 +116,10 @@ None.
 | 260402-i8o-4 | Cover mode: canvas fills container, overflows clipped by parent, ripple covers visible area | 2026-04-02 | 97bfbaf | - |
 | 260402-j1k | Apply water ripple effect to StrengthBlock image in about section | 2026-04-02 | bc20281 | - |
 | 260409-r0y | Fix project section overflow - add container wrapper like other sections | 2026-04-09 | 45cf08c | [260409-r0y-fix-project-section-overflow-add-contain](./quick/260409-r0y-fix-project-section-overflow-add-contain/) |
+| 260514-93y | Add homepage preloading animation with white overlay, QUASAR PORTFOLIO split text, centered image expansion, and preserve hero | 2026-05-13 | 4d86c60 | [260514-93y-b-y-gi-t-i-mu-n-b-n-l-n-plan-c-n-th-n-v-](./quick/260514-93y-b-y-gi-t-i-mu-n-b-n-l-n-plan-c-n-th-n-v-/) |
 
 ## Session Continuity
 
-Last activity: 2026-04-09 - Completed quick task 260409-r0y: Fix project section overflow
+Last activity: 2026-05-13 - Completed quick task 260514-93y: Add homepage preloading animation with white overlay, QUASAR PORTFOLIO split text, centered image expansion, and preserve hero
 Stopped at: Completed 30-01-PLAN.md
 Resume file: None
