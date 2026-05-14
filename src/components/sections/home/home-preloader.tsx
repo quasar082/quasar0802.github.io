@@ -9,7 +9,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
     <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_2700ms_forwards] motion-reduce:hidden" aria-hidden="true">
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
-      <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--split-offset:calc(9vw+clamp(0.5rem,1vw,1rem))] [--title-balance:1.35em] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
+      <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--split-offset:calc(9vw+clamp(0.5rem,1vw,1rem))] [--title-balance:1.05em] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
         <div className="absolute inset-0 z-10 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           <div className="inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
             <span className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
