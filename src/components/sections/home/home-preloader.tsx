@@ -1,19 +1,63 @@
 'use client';
 
+import { useLayoutEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+
 type HomePreloaderProps = {
   heroImagePath: string;
 };
 
+type PreloaderVars = CSSProperties & {
+  '--split-offset'?: string;
+  '--title-balance'?: string;
+};
+
 export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const quasarRef = useRef<HTMLSpanElement>(null);
+  const portfolioRef = useRef<HTMLSpanElement>(null);
+  const [preloaderVars, setPreloaderVars] = useState<PreloaderVars>({});
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    const quasar = quasarRef.current;
+    const portfolio = portfolioRef.current;
+
+    if (!stage || !quasar || !portfolio) {
+      return;
+    }
+
+    const updateSplitMetrics = () => {
+      const styles = window.getComputedStyle(stage);
+      const imageScale = Number.parseFloat(styles.getPropertyValue('--image-scale')) || 0.18;
+      const imageGap = Math.max(8, Math.min(window.innerWidth * 0.01, 16));
+      const splitOffset = window.innerWidth * imageScale * 0.5 + imageGap;
+      const titleBalance = (portfolio.offsetWidth - quasar.offsetWidth) * 0.5;
+
+      setPreloaderVars({
+        '--split-offset': `${splitOffset}px`,
+        '--title-balance': `${titleBalance}px`,
+      } as PreloaderVars);
+    };
+
+    updateSplitMetrics();
+    document.fonts?.ready.then(updateSplitMetrics);
+    window.addEventListener('resize', updateSplitMetrics);
+
+    return () => {
+      window.removeEventListener('resize', updateSplitMetrics);
+    };
+  }, []);
+
   return (
     <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_2700ms_forwards] motion-reduce:hidden" aria-hidden="true">
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
-      <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--split-offset:calc(9vw+clamp(0.5rem,1vw,1rem))] [--title-balance:1.05em] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
+      <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--split-offset:calc(9vw+clamp(0.5rem,1vw,1rem))] [--title-balance:0px] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
         <div className="absolute inset-0 z-10 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           <div className="inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-            <span className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
-            <span className="[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">PORTFOLIO</span>
+            <span ref={quasarRef} className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
+            <span ref={portfolioRef} className="[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">PORTFOLIO</span>
           </div>
         </div>
 
