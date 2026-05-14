@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 
 type HomePreloaderProps = {
@@ -17,13 +17,27 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
   const quasarRef = useRef<HTMLSpanElement>(null);
   const portfolioRef = useRef<HTMLSpanElement>(null);
   const [preloaderVars, setPreloaderVars] = useState<PreloaderVars>({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateMobileState = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    updateMobileState();
+    window.addEventListener('resize', updateMobileState);
+
+    return () => {
+      window.removeEventListener('resize', updateMobileState);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
     const quasar = quasarRef.current;
     const portfolio = portfolioRef.current;
 
-    if (!stage || !quasar || !portfolio) {
+    if (!stage || !quasar || !portfolio || isMobile) {
       return;
     }
 
@@ -47,17 +61,17 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
     return () => {
       window.removeEventListener('resize', updateSplitMetrics);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_2700ms_forwards] motion-reduce:hidden" aria-hidden="true">
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
-      <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--split-offset:calc(9vw+clamp(0.5rem,1vw,1rem))] [--title-balance:0px] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
+      <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.26] [--split-offset:calc(13vw+clamp(0.5rem,1vw,1rem))] [--title-balance:0px] [--title-size:clamp(1.35rem,10vw,3rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] sm:[--title-size:clamp(2rem,7vw,7rem)] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))]">
         <div className="absolute inset-0 z-10 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-          <div className="inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-            <span ref={quasarRef} className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
-            <span ref={portfolioRef} className="[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">PORTFOLIO</span>
+          <div className={isMobile ? 'inline-flex gap-[0.18em] [animation:home-preloader-mobile-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>
+            <span ref={quasarRef} className={isMobile ? '' : '[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>QUASAR</span>
+            <span ref={portfolioRef} className={isMobile ? '' : '[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>PORTFOLIO</span>
           </div>
         </div>
 
@@ -89,6 +103,17 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           58%,
           100% {
             gap: 0;
+          }
+        }
+
+        @keyframes home-preloader-mobile-title {
+          0%,
+          34% {
+            transform: translateY(0);
+          }
+          58%,
+          100% {
+            transform: translateY(calc(var(--image-scale) * 100vh * 0.5 + 1.5rem));
           }
         }
 
