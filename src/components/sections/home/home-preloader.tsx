@@ -10,7 +10,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
       <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] lg:[--image-scale:0.22]">
-        <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-full-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+        <div className="absolute inset-0 z-20 flex items-center justify-center whitespace-nowrap text-center text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-full-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           QUASARPORTFOLIO
         </div>
 
@@ -32,17 +32,17 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
         @keyframes home-preloader-full-title {
           0% {
             opacity: 0;
-            transform: translate3d(-50%, -50%, 0) scale(0.98);
+            transform: scale(0.98);
           }
           18%,
           34% {
             opacity: 1;
-            transform: translate3d(-50%, -50%, 0) scale(1);
+            transform: scale(1);
           }
           45%,
           100% {
             opacity: 0;
-            transform: translate3d(-50%, -50%, 0) scale(1);
+            transform: scale(1);
           }
         }
 
