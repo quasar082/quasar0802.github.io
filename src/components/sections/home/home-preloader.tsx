@@ -44,7 +44,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(calc(-1 * min(18vw, 18rem)), 0, 0);
+            transform: translate3d(calc(-1 * min(8vw, 8rem)), 0, 0);
           }
         }
 
