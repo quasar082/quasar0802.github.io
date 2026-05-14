@@ -10,10 +10,10 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
       <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] lg:[--image-scale:0.22]">
-        <span className="absolute left-1/2 top-1/2 z-10 -translate-x-full -translate-y-1/2 pr-[clamp(0.5rem,1.3vw,1.4rem)] text-[length:var(--title-size)] font-black leading-none tracking-[-0.07em] text-[#111] opacity-0 [animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+        <span className="absolute left-1/2 top-1/2 z-10 -translate-x-full -translate-y-1/2 text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           QUASAR
         </span>
-        <span className="absolute left-1/2 top-1/2 z-10 -translate-y-1/2 pl-[clamp(0.5rem,1.3vw,1.4rem)] text-[length:var(--title-size)] font-black leading-none tracking-[-0.07em] text-[#111] opacity-0 [animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+        <span className="absolute left-1/2 top-1/2 z-10 -translate-y-1/2 text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           PORTFOLIO
         </span>
 
