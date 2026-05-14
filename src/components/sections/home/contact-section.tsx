@@ -26,7 +26,7 @@ export function ContactSection({ contactSocials }: ContactSectionProps) {
           <div className="hidden lg:block" aria-hidden="true" />
 
           <div className="lg:col-span-2">
-            <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:gap-x-10">
+            <div className="grid grid-cols-2 gap-x-1 gap-y-8 2xl:gap-x-3">
               <div>
                 <p className="m-0 text-xs xl:text-sm font-bold uppercase tracking-[0.08em] text-black">Social</p>
                 <ul className="mt-1 m-0 grid list-none p-0">
