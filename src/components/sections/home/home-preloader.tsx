@@ -10,10 +10,16 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
       <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] lg:[--image-scale:0.22]">
-        <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-          <span className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
-          <span className="[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">PORTFOLIO</span>
+        <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-full-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+          QUASARPORTFOLIO
         </div>
+
+        <span className="absolute left-1/2 top-1/2 z-10 -translate-x-full -translate-y-1/2 text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+          QUASAR
+        </span>
+        <span className="absolute left-1/2 top-1/2 z-10 -translate-y-1/2 text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+          PORTFOLIO
+        </span>
 
         <div className="h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           {/* Native img keeps parity with the existing static-export hero asset path. */}
@@ -23,14 +29,19 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       </div>
 
       <style jsx>{`
-        @keyframes home-preloader-title {
+        @keyframes home-preloader-full-title {
           0% {
             opacity: 0;
             transform: translate3d(-50%, -50%, 0) scale(0.98);
           }
           18%,
-          100% {
+          34% {
             opacity: 1;
+            transform: translate3d(-50%, -50%, 0) scale(1);
+          }
+          45%,
+          100% {
+            opacity: 0;
             transform: translate3d(-50%, -50%, 0) scale(1);
           }
         }
@@ -38,22 +49,34 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
         @keyframes home-preloader-left {
           0%,
           34% {
-            transform: translate3d(0, 0, 0);
+            opacity: 0;
+            transform: translate3d(-100%, -50%, 0) scale(1);
+          }
+          45% {
+            opacity: 1;
+            transform: translate3d(-100%, -50%, 0) scale(1);
           }
           58%,
           100% {
-            transform: translate3d(calc(-1 * min(18vw, 18rem)), 0, 0);
+            opacity: 1;
+            transform: translate3d(calc(-100% - min(18vw, 18rem)), -50%, 0) scale(1);
           }
         }
 
         @keyframes home-preloader-right {
           0%,
           34% {
-            transform: translate3d(0, 0, 0);
+            opacity: 0;
+            transform: translate3d(0, -50%, 0) scale(1);
+          }
+          45% {
+            opacity: 1;
+            transform: translate3d(0, -50%, 0) scale(1);
           }
           58%,
           100% {
-            transform: translate3d(min(18vw, 18rem), 0, 0);
+            opacity: 1;
+            transform: translate3d(min(18vw, 18rem), -50%, 0) scale(1);
           }
         }
 
