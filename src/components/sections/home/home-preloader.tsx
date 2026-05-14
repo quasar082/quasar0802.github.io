@@ -11,13 +11,13 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
 
       <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.18] [--title-size:clamp(2rem,7vw,7rem)] sm:[--image-scale:0.2] lg:[--image-scale:0.22]">
         <div className="absolute inset-0 z-10 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-          <div className="inline-flex">
+          <div className="inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
             <span className="[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">QUASAR</span>
             <span className="[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">PORTFOLIO</span>
           </div>
         </div>
 
-        <div className="h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+        <div className="relative z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           {/* Native img keeps parity with the existing static-export hero asset path. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
@@ -34,6 +34,17 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           100% {
             opacity: 1;
             transform: scale(1);
+          }
+        }
+
+        @keyframes home-preloader-title-gap {
+          0%,
+          34% {
+            gap: 0.18em;
+          }
+          58%,
+          100% {
+            gap: 0;
           }
         }
 
@@ -55,7 +66,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(min(18vw, 18rem), 0, 0);
+            transform: translate3d(min(8vw, 8rem), 0, 0);
           }
         }
 
