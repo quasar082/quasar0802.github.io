@@ -68,7 +68,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
       <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.26] [--split-offset:calc(13vw+clamp(0.5rem,1vw,1rem))] [--title-balance:0px] [--title-size:clamp(1.15rem,8vw,2.35rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] sm:[--title-size:clamp(1.7rem,6vw,4.5rem)] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))] lg:[--title-size:clamp(1.9rem,5vw,5.5rem)] xl:[--title-size:clamp(2.1rem,5.8vw,6.5rem)] 2xl:[--title-size:clamp(2.4rem,6.2vw,7.2rem)]">
-        <div className="absolute inset-0 z-10 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+        <div className="absolute inset-0 z-30 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           <div className={isMobile ? 'inline-flex gap-[0.18em] [animation:home-preloader-mobile-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>
             <span ref={quasarRef} className={isMobile ? '' : '[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>QUASAR</span>
             <span ref={portfolioRef} className={isMobile ? '' : '[animation:home-preloader-right_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>PORTFOLIO</span>
@@ -89,8 +89,12 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
             transform: scale(0.98);
           }
           18%,
-          100% {
+          78% {
             opacity: 1;
+            transform: scale(1);
+          }
+          100% {
+            opacity: 0;
             transform: scale(1);
           }
         }
