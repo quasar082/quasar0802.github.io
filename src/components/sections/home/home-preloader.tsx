@@ -37,7 +37,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           ) : (
             <div className="grid grid-cols-[auto_0_auto] items-center justify-center gap-x-[0.18em] [animation:home-preloader-split-grid_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
               <span className="justify-self-end">QUASAR</span>
-              <div className="h-screen w-screen overflow-hidden opacity-0 shadow-2xl [grid-column:2] [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-inline-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+              <div className="h-[calc(100dvh*var(--image-scale))] w-[calc(100dvw*var(--image-scale))] overflow-hidden opacity-0 shadow-2xl [grid-column:2] [transform:translateZ(0)_scale(1)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-inline-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
                 {/* Native img keeps parity with the existing static-export hero asset path. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
