@@ -6,6 +6,7 @@ function FitText({ text }: { text: string }) {
   const parentRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLParagraphElement | null>(null);
   const [fontSize, setFontSize] = useState(16);
+  const [scaleY, setScaleY] = useState(1);
   const [ready, setReady] = useState(false);
 
   useLayoutEffect(() => {
@@ -26,8 +27,9 @@ function FitText({ text }: { text: string }) {
       for (let i = 0; i < 24; i += 1) {
         const mid = (low + high) / 2;
         el.style.fontSize = `${mid}px`;
+        el.style.transform = "scaleY(1)";
 
-        if (el.scrollWidth <= parentWidth && el.scrollHeight <= parentHeight) {
+        if (el.scrollWidth <= parentWidth) {
           best = mid;
           low = mid;
         } else {
@@ -35,7 +37,12 @@ function FitText({ text }: { text: string }) {
         }
       }
 
+      el.style.fontSize = `${best}px`;
+      const textHeight = el.scrollHeight;
+      const nextScaleY = textHeight ? parentHeight / textHeight : 1;
+
       setFontSize(Math.floor(best * 100) / 100);
+      setScaleY(Math.floor(nextScaleY * 1000) / 1000);
       setReady(true);
     };
 
@@ -52,8 +59,12 @@ function FitText({ text }: { text: string }) {
     <div ref={parentRef} className="flex h-full w-full items-end overflow-hidden">
       <p
         ref={textRef}
-        className="m-0 block max-w-full whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
-        style={{ fontSize, visibility: ready ? "visible" : "hidden" }}
+        className="m-0 block max-w-full origin-bottom whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
+        style={{
+          fontSize,
+          transform: `scaleY(${scaleY})`,
+          visibility: ready ? "visible" : "hidden",
+        }}
       >
         {text}
       </p>
