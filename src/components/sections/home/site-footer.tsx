@@ -56,10 +56,10 @@ function FitText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <div ref={parentRef} className="flex h-full w-full items-end overflow-hidden">
+    <div ref={parentRef} className="relative h-full w-full overflow-hidden">
       <p
         ref={textRef}
-        className="m-0 block max-w-full origin-bottom whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
+        className="absolute bottom-0 left-0 m-0 block max-w-full origin-bottom-left whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
         style={{
           fontSize,
           transform: `scaleY(${scaleY})`,
