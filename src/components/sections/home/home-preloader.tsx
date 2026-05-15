@@ -24,7 +24,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
 
 
   return (
-    <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_2700ms_forwards] motion-reduce:hidden" aria-hidden="true">
+    <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_3100ms_forwards] motion-reduce:hidden" aria-hidden="true">
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
       <div className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.16] [--title-size:3dvw] sm:[--image-scale:0.13] sm:[--title-size:1.8dvw] lg:[--image-scale:0.15] lg:[--title-size:1.35dvw] xl:[--image-scale:0.17] xl:[--title-size:2.8dvw] 2xl:[--image-scale:0.2] 2xl:[--title-size:3.4dvw]">
