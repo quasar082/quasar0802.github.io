@@ -8,8 +8,8 @@ type HomePreloaderProps = {
 };
 
 type PreloaderVars = CSSProperties & {
-  '--split-offset'?: string;
-  '--title-balance'?: string;
+  '--left-split'?: string;
+  '--right-split'?: string;
 };
 
 export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
@@ -45,12 +45,15 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       const styles = window.getComputedStyle(stage);
       const imageScale = Number.parseFloat(styles.getPropertyValue('--image-scale')) || 0.18;
       const imageGap = Math.max(8, Math.min(window.innerWidth * 0.01, 16));
-      const splitOffset = window.innerWidth * imageScale * 0.5 + imageGap;
-      const titleBalance = (portfolio.offsetWidth - quasar.offsetWidth) * 0.5;
+      const imageHalfWidth = window.innerWidth * imageScale * 0.5;
+      const quasarCenterFromViewportCenter = quasar.getBoundingClientRect().left + quasar.offsetWidth * 0.5 - window.innerWidth * 0.5;
+      const portfolioCenterFromViewportCenter = portfolio.getBoundingClientRect().left + portfolio.offsetWidth * 0.5 - window.innerWidth * 0.5;
+      const leftTargetCenter = -imageHalfWidth - imageGap - quasar.offsetWidth * 0.5;
+      const rightTargetCenter = imageHalfWidth + imageGap + portfolio.offsetWidth * 0.5;
 
       setPreloaderVars({
-        '--split-offset': `${splitOffset}px`,
-        '--title-balance': `${titleBalance}px`,
+        '--left-split': `${leftTargetCenter - quasarCenterFromViewportCenter}px`,
+        '--right-split': `${rightTargetCenter - portfolioCenterFromViewportCenter}px`,
       } as PreloaderVars);
     };
 
@@ -67,7 +70,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
     <div className="pointer-events-auto fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-white text-[#111] [animation:home-preloader-exit_520ms_ease-in-out_2700ms_forwards] motion-reduce:hidden" aria-hidden="true">
       <span className="sr-only">QUASAR PORTFOLIO</span>
 
-      <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.26] [--split-offset:calc(13vw+clamp(0.5rem,1vw,1rem))] [--title-balance:0px] [--title-size:clamp(1.15rem,8vw,2.35rem)] sm:[--image-scale:0.2] sm:[--split-offset:calc(10vw+clamp(0.5rem,1vw,1rem))] sm:[--title-size:clamp(1.7rem,6vw,4.5rem)] lg:[--image-scale:0.22] lg:[--split-offset:calc(11vw+clamp(0.5rem,1vw,1rem))] lg:[--title-size:clamp(1.9rem,5vw,5.5rem)] xl:[--title-size:clamp(2.1rem,5.8vw,6.5rem)] 2xl:[--title-size:clamp(2.4rem,6.2vw,7.2rem)]">
+      <div ref={stageRef} style={preloaderVars} className="relative flex h-screen w-screen items-center justify-center px-6 [--image-scale:0.26] [--left-split:0px] [--right-split:0px] [--title-size:clamp(1.15rem,8vw,2.35rem)] sm:[--image-scale:0.2] sm:[--title-size:clamp(1.7rem,6vw,4.5rem)] lg:[--image-scale:0.22] lg:[--title-size:clamp(1.9rem,5vw,5.5rem)] xl:[--title-size:clamp(2.1rem,5.8vw,6.5rem)] 2xl:[--title-size:clamp(2.4rem,6.2vw,7.2rem)]">
         <div className="absolute inset-0 z-30 grid place-items-center whitespace-nowrap text-[length:var(--title-size)] font-normal leading-none tracking-[-0.04em] text-[#111] opacity-0 [animation:home-preloader-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
           <div className={isMobile ? 'inline-flex gap-[0.18em] [animation:home-preloader-mobile-title_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'inline-flex gap-[0.18em] [animation:home-preloader-title-gap_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>
             <span ref={quasarRef} className={isMobile ? '' : '[animation:home-preloader-left_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]'}>QUASAR</span>
@@ -128,7 +131,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(calc(-1 * var(--split-offset) - var(--title-balance)), 0, 0);
+            transform: translate3d(var(--left-split), 0, 0);
           }
         }
 
@@ -139,7 +142,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(calc(var(--split-offset) - var(--title-balance)), 0, 0);
+            transform: translate3d(var(--right-split), 0, 0);
           }
         }
 
