@@ -128,7 +128,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(calc(var(--title-balance) - var(--split-offset)), 0, 0);
+            transform: translate3d(calc(-1 * var(--split-offset) - var(--title-balance)), 0, 0);
           }
         }
 
@@ -139,7 +139,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           58%,
           100% {
-            transform: translate3d(calc(var(--split-offset) + var(--title-balance)), 0, 0);
+            transform: translate3d(calc(var(--split-offset) - var(--title-balance)), 0, 0);
           }
         }
 
