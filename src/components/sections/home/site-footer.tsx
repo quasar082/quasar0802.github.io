@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 function FitText({ text }: { text: string }) {
   const parentRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLParagraphElement | null>(null);
-  const [fontSize, setFontSize] = useState(420);
+  const [fontSize, setFontSize] = useState(16);
   const [ready, setReady] = useState(false);
 
   useLayoutEffect(() => {
@@ -16,17 +16,18 @@ function FitText({ text }: { text: string }) {
 
     const fit = () => {
       const parentWidth = parent.clientWidth;
-      if (!parentWidth) return;
+      const parentHeight = parent.clientHeight;
+      if (!parentWidth || !parentHeight) return;
 
       let low = 16;
-      let high = 420;
+      let high = 520;
       let best = 16;
 
       for (let i = 0; i < 24; i += 1) {
         const mid = (low + high) / 2;
         el.style.fontSize = `${mid}px`;
 
-        if (el.scrollWidth <= parentWidth) {
+        if (el.scrollWidth <= parentWidth && el.scrollHeight <= parentHeight) {
           best = mid;
           low = mid;
         } else {
@@ -34,7 +35,7 @@ function FitText({ text }: { text: string }) {
         }
       }
 
-      setFontSize(best);
+      setFontSize(Math.floor(best * 100) / 100);
       setReady(true);
     };
 
@@ -48,10 +49,10 @@ function FitText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <div ref={parentRef} className="w-full overflow-hidden">
+    <div ref={parentRef} className="flex h-full w-full items-end overflow-hidden">
       <p
         ref={textRef}
-        className="m-0 block w-fit whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
+        className="m-0 block max-w-full whitespace-nowrap font-medium leading-[0.8] tracking-[-0.03em] text-black"
         style={{ fontSize, visibility: ready ? "visible" : "hidden" }}
       >
         {text}
@@ -62,7 +63,7 @@ function FitText({ text }: { text: string }) {
 
 export function SiteFooter() {
   return (
-    <footer aria-label="Site footer">
+    <footer aria-label="Site footer" className="min-h-0 flex-1">
       <FitText text="QUASAR" />
       {/* <div className="mt-3 border-t border-black/35 pt-3">
         <p className="m-0 text-sm tracking-wide text-black/65">© 2026 Quasar. All rights reserved.</p>
