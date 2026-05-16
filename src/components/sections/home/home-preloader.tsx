@@ -1,24 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type HomePreloaderProps = {
   heroImagePath: string;
 };
 
 export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
+  const inlineImageRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [centerOffset, setCenterOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const updateMobileState = () => {
+    const updateLayoutState = () => {
       setIsMobile(window.innerWidth < 640);
+
+      const inlineImage = inlineImageRef.current;
+      if (!inlineImage) return;
+
+      const rect = inlineImage.getBoundingClientRect();
+      setCenterOffset({
+        x: window.innerWidth / 2 - (rect.left + rect.width / 2),
+        y: window.innerHeight / 2 - (rect.top + rect.height / 2),
+      });
     };
 
-    updateMobileState();
-    window.addEventListener('resize', updateMobileState);
+    updateLayoutState();
+    window.addEventListener('resize', updateLayoutState);
+    document.fonts?.ready.then(updateLayoutState).catch(updateLayoutState);
 
     return () => {
-      window.removeEventListener('resize', updateMobileState);
+      window.removeEventListener('resize', updateLayoutState);
     };
   }, []);
 
@@ -37,7 +49,14 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           ) : (
             <div className="grid grid-cols-[auto_0_auto] items-center justify-center gap-x-[0.18em] [animation:home-preloader-split-grid_2.7s_cubic-bezier(0.76,0,0.24,1)_forwards]">
               <span className="justify-self-end">QUASAR</span>
-              <div className="h-[calc(100dvh*var(--image-scale))] w-[calc(100dvw*var(--image-scale))] overflow-hidden opacity-0 shadow-2xl [grid-column:2] [transform:translateZ(0)_scale(1)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-inline-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
+              <div
+                ref={inlineImageRef}
+                className="h-[calc(100dvh*var(--image-scale))] w-[calc(100dvw*var(--image-scale))] overflow-hidden opacity-0 shadow-2xl [grid-column:2] [transform:translateZ(0)_scale(1)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-inline-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]"
+                style={{
+                  '--center-x': `${centerOffset.x}px`,
+                  '--center-y': `${centerOffset.y}px`,
+                } as React.CSSProperties}
+              >
                 {/* Native img keeps parity with the existing static-export hero asset path. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
@@ -128,7 +147,7 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           }
           100% {
             opacity: 1;
-            transform: translateZ(0) scale(calc(1 / var(--image-scale)));
+            transform: translate3d(var(--center-x), var(--center-y), 0) scale(calc(1 / var(--image-scale)));
           }
         }
 
