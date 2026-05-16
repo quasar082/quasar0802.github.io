@@ -9,7 +9,7 @@ type HomePreloaderProps = {
 export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
   const inlineImageRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [centerOffset, setCenterOffset] = useState({ x: 0, y: 0 });
+  const [inlineOffset, setInlineOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const updateLayoutState = () => {
@@ -19,9 +19,9 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       if (!inlineImage) return;
 
       const rect = inlineImage.getBoundingClientRect();
-      setCenterOffset({
-        x: window.innerWidth / 2 - (rect.left + rect.width / 2),
-        y: window.innerHeight / 2 - (rect.top + rect.height / 2),
+      setInlineOffset({
+        x: rect.left + rect.width / 2 - window.innerWidth / 2,
+        y: rect.top + rect.height / 2 - window.innerHeight / 2,
       });
     };
 
@@ -51,28 +51,29 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
               <span className="justify-self-end">QUASAR</span>
               <div
                 ref={inlineImageRef}
-                className="h-[calc(100dvh*var(--image-scale))] w-[calc(100dvw*var(--image-scale))] overflow-hidden opacity-0 shadow-2xl [grid-column:2] [transform:translateZ(0)_scale(1)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-inline-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]"
-                style={{
-                  '--center-x': `${centerOffset.x}px`,
-                  '--center-y': `${centerOffset.y}px`,
-                } as React.CSSProperties}
-              >
-                {/* Native img keeps parity with the existing static-export hero asset path. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
-              </div>
+                className="h-[calc(100dvh*var(--image-scale))] w-[calc(100dvw*var(--image-scale))] [grid-column:2]"
+                aria-hidden="true"
+              />
               <span className="justify-self-start">PORTFOLIO</span>
             </div>
           )}
         </div>
 
-        {isMobile ? (
-          <div className="relative z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]">
-            {/* Native img keeps parity with the existing static-export hero asset path. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
-          </div>
-        ) : null}
+        <div
+          className={isMobile ? 'relative z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'fixed left-1/2 top-1/2 z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:var(--image-start-transform)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]'}
+          style={
+            isMobile
+              ? undefined
+              : ({
+                  '--image-start-transform': `translate3d(calc(-50% + ${inlineOffset.x}px), calc(-50% + ${inlineOffset.y}px), 0) scale(var(--image-scale))`,
+                  '--image-end-transform': 'translate3d(-50%, -50%, 0) scale(1)',
+                } as React.CSSProperties)
+          }
+        >
+          {/* Native img keeps parity with the existing static-export hero asset path. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={heroImagePath} alt="" decoding="async" className="h-full w-full object-cover" />
+        </div>
       </div>
 
       <style jsx>{`
@@ -121,33 +122,16 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
           0%,
           36% {
             opacity: 0;
-            transform: translateZ(0) scale(var(--image-scale));
+            transform: var(--image-start-transform, translateZ(0) scale(var(--image-scale)));
           }
           54%,
           68% {
             opacity: 1;
-            transform: translateZ(0) scale(var(--image-scale));
+            transform: var(--image-start-transform, translateZ(0) scale(var(--image-scale)));
           }
           100% {
             opacity: 1;
-            transform: translateZ(0) scale(1);
-          }
-        }
-
-        @keyframes home-preloader-inline-image {
-          0%,
-          36% {
-            opacity: 0;
-            transform: translateZ(0) scale(1);
-          }
-          54%,
-          68% {
-            opacity: 1;
-            transform: translateZ(0) scale(1);
-          }
-          100% {
-            opacity: 1;
-            transform: translate3d(var(--center-x), var(--center-y), 0) scale(calc(1 / var(--image-scale)));
+            transform: var(--image-end-transform, translateZ(0) scale(1));
           }
         }
 
