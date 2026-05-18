@@ -9,7 +9,7 @@ type HomePreloaderProps = {
 export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
   const inlineImageRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [inlineOffset, setInlineOffset] = useState({ x: 0, y: 0 });
+  const [imageRect, setImageRect] = useState({ left: 0, top: 0, width: 0, height: 0 });
 
   useEffect(() => {
     const updateLayoutState = () => {
@@ -19,9 +19,11 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
       if (!inlineImage) return;
 
       const rect = inlineImage.getBoundingClientRect();
-      setInlineOffset({
-        x: rect.left + rect.width / 2 - window.innerWidth / 2,
-        y: rect.top + rect.height / 2 - window.innerHeight / 2,
+      setImageRect({
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
       });
     };
 
@@ -60,13 +62,15 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
         </div>
 
         <div
-          className={isMobile ? 'relative z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'fixed left-1/2 top-1/2 z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:var(--image-start-transform)] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]'}
+          className={isMobile ? 'relative z-20 h-screen w-screen overflow-hidden opacity-0 shadow-2xl [transform:translateZ(0)_scale(var(--image-scale))] [transform-origin:center] [will-change:transform,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]' : 'fixed z-20 overflow-hidden opacity-0 shadow-2xl [will-change:top,left,width,height,opacity] [animation:home-preloader-image_3s_cubic-bezier(0.76,0,0.24,1)_forwards]'}
           style={
             isMobile
               ? undefined
               : ({
-                  '--image-start-transform': `translate3d(calc(-62.5% + ${inlineOffset.x}px), calc(-50% + ${inlineOffset.y}px), 0) scale(var(--image-scale))`,
-                  '--image-end-transform': 'translate3d(-62.5%, -50%, 0) scale(1)',
+                  '--image-start-left': `${imageRect.left}px`,
+                  '--image-start-top': `${imageRect.top}px`,
+                  '--image-start-width': `${imageRect.width}px`,
+                  '--image-start-height': `${imageRect.height}px`,
                 } as React.CSSProperties)
           }
         >
@@ -121,17 +125,29 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
         @keyframes home-preloader-image {
           0%,
           36% {
+            left: var(--image-start-left, 0);
+            top: var(--image-start-top, 0);
+            width: var(--image-start-width, 100vw);
+            height: var(--image-start-height, 100vh);
             opacity: 0;
-            transform: var(--image-start-transform, translateZ(0) scale(var(--image-scale)));
+            transform: translateZ(0);
           }
           54%,
           68% {
+            left: var(--image-start-left, 0);
+            top: var(--image-start-top, 0);
+            width: var(--image-start-width, 100vw);
+            height: var(--image-start-height, 100vh);
             opacity: 1;
-            transform: var(--image-start-transform, translateZ(0) scale(var(--image-scale)));
+            transform: translateZ(0);
           }
           100% {
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
             opacity: 1;
-            transform: var(--image-end-transform, translateZ(0) scale(1));
+            transform: translateZ(0);
           }
         }
 
