@@ -65,8 +65,8 @@ export function HomePreloader({ heroImagePath }: HomePreloaderProps) {
             isMobile
               ? undefined
               : ({
-                  '--image-start-transform': `translate3d(calc(-50% + ${inlineOffset.x}px), calc(-50% + ${inlineOffset.y}px), 0) scale(var(--image-scale))`,
-                  '--image-end-transform': 'translate3d(-50%, -50%, 0) scale(1)',
+                  '--image-start-transform': `translate3d(calc(-62.5% + ${inlineOffset.x}px), calc(-50% + ${inlineOffset.y}px), 0) scale(var(--image-scale))`,
+                  '--image-end-transform': 'translate3d(-62.5%, -50%, 0) scale(1)',
                 } as React.CSSProperties)
           }
         >
